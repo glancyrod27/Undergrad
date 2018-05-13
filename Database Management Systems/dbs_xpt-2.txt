@@ -1,0 +1,264 @@
+Bandra                                 67     768495 stu@yahoo
+
+         5 E                    TE         CMPN               18
+Byculla                                57     768498 stuft@yahoo
+
+         6 F                    SE         CMPN               19
+Malad                                  78     868498 stufyutt@yahoo
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+        67 K                    BE         CMPN               21
+Khar                                   78    8665498 stufyut78ut@yahoo
+
+         6 F                    SE         INFT               19
+Goregaon                               94 9786542744 our@gmail.com
+
+         7 G                    SE         INFT               18
+Andheri                                86 9786542744 our@gmail.com
+
+
+9 rows selected.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from student_elroy;
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         1 A                    SE         CMPN               19
+Borivali                              600  978672322 thts_me_sim
+
+         2 B                    SE         CMPN               20
+Dahisar                               560 9788756322 thts_me_welz
+
+         3 C                    SE         CMPN               21
+Malad                                 300 9.7882E+10 thts_me_elz
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         4 D                    FE         CMPN               18
+Bandra                                 67     768495 stu@yahoo
+
+         5 E                    TE         CMPN               18
+Byculla                                57     768498 stuft@yahoo
+
+         6 F                    SE         CMPN               19
+Malad                                  78     868498 stufyutt@yahoo
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         6 F                    SE         INFT               19
+Goregaon                               94 9786542744 our@gmail.com
+
+         7 G                    SE         INFT               18
+Andheri                                86 9786542744 our@gmail.com
+
+
+8 rows selected.
+
+
+SQL> insert into student_elroy(id,name,address,class,marks,dept,phoneno,emailid,
+
+  2  age) values (67,'K','Khar','BE',78,'CMPN',8665498,'stufyut78ut@yahoo',21);
+
+1 row created.
+
+SQL> insert into student_elroy(id,name,address,class,marks,dept,phoneno,emailid,
+
+  2  age) values (897,'S','Vasai','BE',123,'CMPN',876565498,'ismile@yahoo',21);
+
+1 row created.
+
+SQL> savepoint A;
+
+Savepoint created.
+
+SQL>  insert into student_elroy(id,name,address,class,marks,dept,phoneno,emailid
+,
+  2  age) values (567,'S','Virar','TE',567,'CMPN',786754,'icry@yahoo',20);
+
+1 row created.
+
+SQL> select * from student_elroy;
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         1 A                    SE         CMPN               19
+Borivali                              600  978672322 thts_me_sim
+
+         2 B                    SE         CMPN               20
+Dahisar                               560 9788756322 thts_me_welz
+
+         3 C                    SE         CMPN               21
+Malad                                 300 9.7882E+10 thts_me_elz
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         4 D                    FE         CMPN               18
+Bandra                                 67     768495 stu@yahoo
+
+         5 E                    TE         CMPN               18
+Byculla                                57     768498 stuft@yahoo
+
+         6 F                    SE         CMPN               19
+Malad                                  78     868498 stufyutt@yahoo
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+        67 K                    BE         CMPN               21
+Khar                                   78    8665498 stufyut78ut@yahoo
+
+       897 S                    BE         CMPN               21
+Vasai                                 123  876565498 ismile@yahoo
+
+       567 S                    TE         CMPN               20
+Virar                                 567     786754 icry@yahoo
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         6 F                    SE         INFT               19
+Goregaon                               94 9786542744 our@gmail.com
+
+         7 G                    SE         INFT               18
+Andheri                                86 9786542744 our@gmail.com
+
+
+11 rows selected.
+
+SQL> rollback to savepoint A;
+
+Rollback complete.
+
+SQL> select * from student_elroy;
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         1 A                    SE         CMPN               19
+Borivali                              600  978672322 thts_me_sim
+
+         2 B                    SE         CMPN               20
+Dahisar                               560 9788756322 thts_me_welz
+
+         3 C                    SE         CMPN               21
+Malad                                 300 9.7882E+10 thts_me_elz
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         4 D                    FE         CMPN               18
+Bandra                                 67     768495 stu@yahoo
+
+         5 E                    TE         CMPN               18
+Byculla                                57     768498 stuft@yahoo
+
+         6 F                    SE         CMPN               19
+Malad                                  78     868498 stufyutt@yahoo
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+        67 K                    BE         CMPN               21
+Khar                                   78    8665498 stufyut78ut@yahoo
+
+       897 S                    BE         CMPN               21
+Vasai                                 123  876565498 ismile@yahoo
+
+         6 F                    SE         INFT               19
+Goregaon                               94 9786542744 our@gmail.com
+
+
+        ID NAME                 CLASS      DEPT              AGE
+---------- -------------------- ---------- ---------- ----------
+ADDRESS                             MARKS    PHONENO EMAILID
+------------------------------ ---------- ---------- --------------------
+         7 G                    SE         INFT               18
+Andheri                                86 9786542744 our@gmail.com
+
+
+10 rows selected.
+
+SQL> select * from iBooks;
+
+TITLE                                    AUTHOR
+---------------------------------------- --------------------
+PUBLISHER                  SOLD
+-------------------- ----------
+Harry                                    JK
+Techmax                       2
+
+Eragon                                   DK
+Balaguru                      5
+
+Toilet                                   Bakwas
+Twinkle                       0
+
+SQL> alter table iBooks add YOP number(3);
+
+Table altered.
+
+SQL> update iBooks set YOP=001 where sold=2;
+
+1 row updated.
+
+SQL> update iBooks set YOP=002 where sold=5;
+
+1 row updated.
+
+SQL> update iBooks set YOP=003 where sold=0;
+
+1 row updated.
+
+SQL> select * from iBooks;
+
+TITLE                                    AUTHOR
+---------------------------------------- --------------------
+PUBLISHER                  SOLD        YOP
+-------------------- ---------- ----------
+Harry                                    JK
+Techmax                       2          1
+
+Eragon                                   DK
+Balaguru                      5          2
+
+Toilet                                   Bakwas
+Twinkle                       0          3
+
+
+SQL> select title from iBooks where YOP=2;
+
+TITLE
+----------------------------------------
+Eragon
+
+SQL>

@@ -1,0 +1,71 @@
+import java.io.*;
+public class Bankers
+{
+static int max1[];
+static int work[][];
+static boolean finish[];
+static int allocation[][];
+ static int max[][];
+static int need[][];
+static int available[];
+ public static void main(String args[])throws IOException
+ {
+     int i,j;
+     BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+     System.out.println("enter no of resources");
+     int m=Integer.parseInt(br.readLine());
+      System.out.println("enter no of processes");
+     int n=Integer.parseInt(br.readLine());
+     work=new int[n][m];
+     finish=new boolean[n];
+     allocation=new int[n][m];
+     max=new int[n][m];
+     need=new int[n][m];
+     available=new int[m];
+     max1=new int[m];
+      int temp=0;
+    System.out.println("enter values of max");
+     for(i=0;i<n;i++)
+     {
+         for(j=0;j<m;j++)
+         {
+           max[i][j]=Integer.parseInt(br.readLine());
+         }
+     }
+    System.out.println("enter values of allocation");
+     for(i=0;i<n;i++)
+     {
+         for(j=0;j<m;j++)
+         {
+           allocation[i][j]=Integer.parseInt(br.readLine());
+         }
+     }
+     for(i=0;i<n;i++)
+     {
+         for(j=0;j<m;j++)
+         {
+           need[i][j]=max[i][j]-allocation[i][j];
+         }
+     }
+    for(i=0;i<m;i++)
+    {
+        System.out.println("enter max no of resource"+(i+1));
+        max1[i]=Integer.parseInt(br.readLine());
+    }
+    for(i=0;i<m;i++)
+    {
+        temp=0;
+        for(j=0;j<n;j++)
+        {
+
+            temp=temp+allocation[j][i];
+
+        }
+        available[i]=max1[i]-temp;
+    }
+     for(i=0;i<m;i++)
+    {
+    System.out.println(available[i]);
+     }
+ }
+}

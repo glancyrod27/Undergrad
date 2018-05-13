@@ -1,0 +1,53 @@
+import java.io.*;
+
+class SSTF
+{
+     public static void main(String args[])throws IOException
+    {
+        int seq[];
+        int n,m,i,k = 0,j,avg,min,cylinder=0;
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        
+        System.out.println("enter no of entries");
+        n=Integer.parseInt(br.readLine());
+        seq=new int[n];
+        System.out.println("enter entries");
+        for(i=0;i<n;i++)
+        {
+            seq[i]=Integer.parseInt(br.readLine());
+        }
+        System.out.println("enter the starting entry");
+          m=Integer.parseInt(br.readLine());
+          min=Math.abs(seq[0]-m);
+          for(i=1;i<n;i++)
+          {
+            if(min>Math.abs(seq[i]-m))
+            {
+                min=Math.abs(seq[i]-m);
+                k=i;
+                seq[i]=1000;
+            }
+            
+          }
+          cylinder=min;
+          for(i=0;i<n;i++)
+          {
+              min=k-seq[0];
+              for(j=1;j<n;i++)
+          {
+            if(min>Math.abs(seq[j]-k))
+            {
+                min=Math.abs(seq[j]-k);
+                k=j;
+                seq[j]=1000;
+            }
+            
+          }
+              cylinder=cylinder+min;
+              
+          }
+          System.out.println("no of cylinder="+cylinder);
+    avg=cylinder/n;
+    System.out.println("avg seek time="+avg);
+}
+}

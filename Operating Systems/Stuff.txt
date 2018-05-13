@@ -1,0 +1,78 @@
+package cjds;
+
+import java.io.*;
+class Algorithm{
+    int size;
+    
+    void fifo(int cacheSize,int array[]){
+        int cacheArray[]=new int [cacheSize];
+        int hits=0,miss=0;
+        int timeCounter[]=new int[cacheSize];
+        for(int i=0;i<cacheSize;i++){
+            cacheArray[i]=-1;
+            timeCounter[i]=-1;
+        }
+        for(int i=0;i<array.length;i++){
+            int least=0;
+            boolean isPresent=false;
+            for(int point=0;point<cacheArray.length;point++){
+            if(cacheArray[point]==array[i]){
+                isPresent=true;hits++;
+                //timeCounter[point]=i;
+                //cacheArray[point]=i;
+            }
+            if(timeCounter[point]<timeCounter[least])
+                least=point;
+            }
+            if(!isPresent){
+                miss++;
+                cacheArray[least]=array[i];
+                timeCounter[least]=i;
+            }
+            for(int j=0;j<cacheArray.length;j++){
+                System.out.print(cacheArray[j]+"\t");}
+            System.out.print("\n");
+        }
+        System.out.println("Hits:"+hits+"\tMisses"+miss);
+    }
+
+
+    void lru(int cacheSize, int array[]){
+        int cacheArray[]=new int [cacheSize];
+        int hits=0,miss=0;
+        int timeCounter[]=new int[cacheSize];
+        for(int i=0;i<cacheSize;i++){
+            cacheArray[i]=-1;
+            timeCounter[i]=-1;
+        }
+        for(int i=0;i<array.length;i++){
+            int least=0;
+            boolean isPresent=false;
+            for(int point=0;point<cacheArray.length;point++){
+            if(cacheArray[point]==array[i]){
+                isPresent=true;
+                timeCounter[point]=i;
+                hits++;
+                //cacheArray[point]=i;
+            }
+            if(timeCounter[point]<timeCounter[least])
+                least=point;
+            }
+            if(!isPresent){
+                cacheArray[least]=array[i];
+                timeCounter[least]=i;
+                miss++;
+            }
+            for(int j=0;j<cacheArray.length;j++){
+                System.out.print(cacheArray[j]+"\t");}
+            System.out.print("\n");
+        }
+        System.out.println("Hits:"+hits+"\tMisses"+miss);
+    }
+}
+public class FIFO {
+    public static void main(String a[])throws IOException{
+       // (new Algorithm()).fifo(3,new int[] {7,0,1,2,0,3,0,4,2,3,03,2,1,2,0,1,7,0,1});
+         (new Algorithm()).fifo(4,new int[] {1,2,3,4,1,2,5,1,2,3,4,5});
+    }
+}

@@ -1,0 +1,215 @@
+Table altered.
+
+SQL> update Student05 set Dept='CMPN' where ID=1;
+
+1 row updated.
+
+SQL> update Student05 set Dept='CMPN' where ID=2;
+
+1 row updated.
+
+SQL> update Student05 set Dept='CMPN' where ID=3;
+
+1 row updated.
+
+SQL> select * from Student05;
+
+        ID NAME       CLASS        ADDRESS              AG PHONENO    DEPT  MARK
+
+---------- ---------- ------------ -------------------- -- ---------- ----- ----
+
+         1 flevia     fe           Nallasopara          19 9320438291 CMPN  600
+         2 viviana    fe1          Virar                19 9654238795 CMPN  650
+         3 glancy     fe2          Vasai                19 8980256791 CMPN  700
+
+SQL> alter table Student05 modify(Age varchar2(3),Phoneno varchar2(10));
+
+Table altered.
+
+
+
+SQL> alter table Student05 modify(name varchar(9));
+
+Table altered.
+
+SQL> update Student05 set class='Flevia' where ID=1;
+
+1 row updated.
+
+SQL> update Student05 set class='Se A' where ID=1;
+
+1 row updated.
+
+SQL> update Student05 set class='Se A' where ID=2;
+
+1 row updated.
+
+SQL> update Student05 set class='Se A' where ID=3;
+
+1 row updated.
+
+SQL> update Student05 set class='Glancy' where ID=3;
+
+1 row updated.
+
+SQL> update Student05 set name='Glancy' where ID=3;
+
+1 row updated.
+
+SQL> update Student05 set name='Viviana' where ID=2;
+
+1 row updated.
+
+SQL> update Student05 set name='Flevia' where ID=1;
+
+1 row updated.
+
+SQL> select * from Student05;
+
+        ID NAME      CLASS        ADDRESS              AGE PHONENO    DEPT  MARK
+
+---------- --------- ------------ -------------------- --- ---------- ----- ----
+
+         1 Flevia    Se A         Nallasopara          19  9320438291 CMPN  600
+         2 Viviana   Se A         Virar                19  9654238795 CMPN  650
+         3 Glancy    Glancy       Vasai                19  8980256791 CMPN  700
+
+SQL> alter table Student05 modify(Marks varchar2(5));
+
+Table altered.
+
+SQL> update Student05 set class='SE A' where ID=3;
+
+1 row updated.
+
+SQL> select * from Student05;
+
+        ID NAME      CLASS        ADDRESS              AGE PHONENO    DEPT
+---------- --------- ------------ -------------------- --- ---------- -----
+MARKS
+-----
+         1 Flevia    Se A         Nallasopara          19  9320438291 CMPN
+600
+
+         2 Viviana   Se A         Virar                19  9654238795 CMPN
+650
+
+         3 Glancy    SE A         Vasai                19  8980256791 CMPN
+700
+
+
+SQL> alter table Student05 modify(Address varchar2(15));
+
+Table altered.
+
+SQL> select * from Student05;
+
+        ID NAME      CLASS        ADDRESS         AGE PHONENO    DEPT  MARKS
+---------- --------- ------------ --------------- --- ---------- ----- -----
+         1 Flevia    Se A         Nallasopara     19  9320438291 CMPN  600
+         2 Viviana   Se A         Virar           19  9654238795 CMPN  650
+         3 Glancy    SE A         Vasai           19  8980256791 CMPN  700
+
+
+
+
+SQL> alter table Student05 add(EmailID varchar2(10));
+
+Table altered.
+
+SQL> alter table Student05 modify(Address varchar2(12));
+
+Table altered.
+
+SQL> alter table Student05 modify(class varchar2(7));
+
+Table altered.
+
+SQL> alter table Student05 modify(class varchar2(6));
+
+Table altered.
+
+SQL> select * from Student05;
+
+        ID NAME      CLASS  ADDRESS      AGE PHONENO    DEPT  MARKS EMAILID
+---------- --------- ------ ------------ --- ---------- ----- ----- ----------
+         1 Flevia    Se A   Nallasopara  19  9320438291 CMPN  600
+         2 Viviana   Se A   Virar        19  9654238795 CMPN  650
+         3 Glancy    SE A   Vasai        19  8980256791 CMPN  700
+
+SQL> alter table Student05 modify(EmailID varchar2(12));
+
+Table altered.
+
+SQL> update Student05 set EmailID='flevy@g.com' where ID=1;
+
+1 row updated.
+
+SQL> update Student05 set class='Se A' where ID=3;
+
+1 row updated.
+
+SQL> alter table Student05 modify(name varchar(8));
+
+Table altered.
+
+SQL> update Student05 set EmailID='flevy@g.com' where ID=1;
+
+1 row updated.
+
+SQL> update Student05 set EmailID='vivi@g.com' where ID=2;
+
+1 row updated.
+
+SQL> update Student05 set EmailID='glan@g.com' where ID=3;
+
+1 row updated.
+
+SQL> select * from Student05;
+
+        ID NAME     CLASS  ADDRESS      AGE PHONENO    DEPT  MARKS EMAILID
+---------- -------- ------ ------------ --- ---------- ----- ----- ------------
+         1 Flevia   Se A   Nallasopara  19  9320438291 CMPN  600   flevy@g.com
+         2 Viviana  Se A   Virar        19  9654238795 CMPN  650   vivi@g.com
+         3 Glancy   Se A   Vasai        19  8980256791 CMPN  700   glan@g.com
+
+SQL> alter table Student05 drop(Phoneno);
+
+Table altered.
+
+SQL> select * from Student05;
+
+        ID NAME     CLASS  ADDRESS      AGE DEPT  MARKS EMAILID
+---------- -------- ------ ------------ --- ----- ----- ------------
+         1 Flevia   Se A   Nallasopara  19  CMPN  600   flevy@g.com
+         2 Viviana  Se A   Virar        19  CMPN  650   vivi@g.com
+         3 Glancy   Se A   Vasai        19  CMPN  700   glan@g.com
+
+
+
+
+SQL> alter table Student05 add(phoneno varchar2(10));
+
+Table altered.
+
+SQL> update Student05 set phoneno=8980452318 where ID=3;
+
+1 row updated.
+
+SQL> update Student05 set phoneno=7834701745 where ID=2;
+
+1 row updated.
+
+SQL> update Student05 set phoneno=9320438291 where ID=1;
+
+1 row updated.
+
+SQL> select * from Student05;
+
+        ID NAME     CLASS  ADDRESS      AGE DEPT  MARKS EMAILID      PHONENO
+ ------------------------------------------------ ------ ------------ --- ----- ----- ------------ ----------
+         1 Flevia   Se A   Nallasopara  19  CMPN  600   flevy@g.com  9320438291
+         2 Viviana  Se A   Virar        19  CMPN  650   vivi@g.com   7834701745
+         3 Glancy   Se A   Vasai        19  CMPN  700   glan@g.com   8980452318
+
+SQL>

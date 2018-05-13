@@ -1,0 +1,54 @@
+//AddCode
+class AddCode
+{
+	//a=b+(c*d)+(c*d)
+	public static void main(String args[])
+	{
+	int n,m,n1,m1,n2,n3;
+	String temp=null,temp1=null,temp2=null;
+	String s1="a=b+(c*d)+(c*d)";
+	System.out.println("INPUT");
+	System.out.println(s1);
+	StringBuffer sb=new StringBuffer(s1);
+	n=s1.indexOf('(');
+	m=s1.indexOf(')');
+	n1=s1.lastIndexOf('(');
+	m1=s1.lastIndexOf(')');
+	temp=s1.substring(n+1,m);
+	System.out.println();
+	System.out.println("OUTPUT");
+	System.out.println("t1="+temp);
+	sb.replace(n,m+1,"t1");
+	System.out.println(sb);
+	temp=sb.toString();
+	n1=temp.indexOf('(');
+	m1=temp.indexOf(')');
+	sb.replace(n1,m1+1,"t1");
+	System.out.println(sb);
+	temp=sb.toString();
+	n2=temp.indexOf("t1");
+	temp2=temp.substring(n2,sb.length());
+	System.out.println("t2="+temp2);
+	sb.replace(n2,sb.length(),"t2");
+	System.out.println(sb);
+	temp=sb.toString();
+	n3=temp.indexOf('b');
+	temp1=temp.substring(n3);
+	System.out.println("t3="+temp1);
+	System.out.println(s1.charAt(0)+"=t3");
+	}
+}
+/*
+3 ADDRESS CODE GENERATION:
+----------------------------
+INPUT
+a=b+(c*d)+(c*d)
+OUTPUT
+t1=c*d
+a=b+t1+(c*d)
+a=b+t1+t1
+t2=t1+t1
+a=b+t2
+t3=b+t2
+a=t3
+*/

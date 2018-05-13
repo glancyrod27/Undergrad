@@ -1,0 +1,121 @@
+			DBMS
+			Expt No 1:
+
+Question:
+
+Create a table for Student with columns id, name, class, department,
+age, address, marks and phone number.
+Perform the following operations
+  1. Retrieval of all data stored in the table also describe the structure of table.
+  2. To the student table add one more column for storing Email id.
+
+
+
+SQL*Plus: Release 11.2.0.1.0 Production on Thu Feb 2 15:24:39 2012
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott@oracle
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.1.0.6.0 - Production
+
+SQL> create table student30(id number(3),name varchar2(10),class varchar2(5),
+dept varchar2(5),age number(3),address varchar2(10),marks number(3),phone number
+(12));
+
+Table created.
+
+SQL> desc student30;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                                 NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ CLASS                                              VARCHAR2(5)
+ DEPT                                               VARCHAR2(5)
+ AGE                                                NUMBER(3)
+ ADDRESS                                            VARCHAR2(10)
+ MARKS                                              NUMBER(5)
+ PHONE                                              NUMBER(12)
+
+SQL> insert into student30(id,name,class,dept,age,address,marks,phone)values(
+1,'flevia','seA','CMPN',19,'vasai',60,9320438291);
+
+1 row created.
+
+SQL> insert into student30 values(2,'glancy','seA','CMPN',19,'virar',67,9850603903);
+
+1 row created.
+
+SQL> insert into student30 values(3,'viviana','seA','CMPN',19,'vasai',62,9270038384);
+
+1 row created.
+
+SQL> select * from student30;
+
+ ID   NAME    CLASS    DEPT     AGE     ADDRESS     MARKS      PHONE          
+ ---  ----------     -----         -----        ---          ----------         -----            ------------      
+  1     flevia       seA        CMPN     19            vasai              60           9320438291    
+
+  2     glancy     seA        CMPN     19             virar              67          9850603903    
+
+  3     viviana    seA         CMPN    19             vasai              62          9270038384    
+
+       
+SQL> alter table student30 add(email_id varchar2(20));
+
+Table altered.
+
+SQL> desc student30;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ID                                                 NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ CLASS                                              VARCHAR2(5)
+ DEPT                                               VARCHAR2(5)
+ AGE                                                NUMBER(3)
+ ADDRESS                                            VARCHAR2(10)
+ MARKS                                              NUMBER(5)
+ PHONE                                              NUMBER(12)
+ EMAIL_ID                                           VARCHAR2(20)
+
+
+
+SQL> update student30 set email_id='flevia05@gmail.com' where id=1;
+
+1 row updated.
+
+SQL> update student30 set email_id='glancyrod@gmail.com' where id=2;
+
+1 row updated.
+
+SQL> update student30 set email_id='viviana@gmail.com' where id=3;
+
+1 row updated.
+
+SQL> select * from student30;
+
+ ID   NAME    CLASS    DEPT     AGE     ADDRESS     MARKS      PHONE            EMAIL_ID
+----  ----------   --------    ---------   --------    -------------     -----------      ------------       --------------------
+  1     flevia       seA        CMPN     19            vasai              60          9320438291   flevia05@gmail.com
+
+  2     glancy     seA        CMPN     19             virar              67          9850603903   glancyrod@gmail.com
+
+  3     viviana    seA         CMPN    19             vasai              62          9270038384   viviana@gmail.com
+
+
+SQL> delete from student30 where id=3;
+
+1 row deleted.
+
+SQL> select * from student30;
+ ID   NAME    CLASS    DEPT     AGE     ADDRESS     MARKS      PHONE          EMAIL_ID
+----  ----------   --------    ---------   --------    -------------     -----------      ------------       --------------------
+  1     flevia       seA        CMPN     19            vasai              60          9320438291   flevia05@gmail.com
+
+  2     glancy     seA        CMPN     19             virar              67          9850603903   glancyrod@gmail.com
+
+SQL>

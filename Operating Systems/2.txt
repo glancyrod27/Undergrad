@@ -1,0 +1,112 @@
+import java.io.*;
+
+class Process
+{
+	int id, burst, priority, waiting, turnaround;
+}
+class Priority
+{
+	public static void main(String args[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter number of processes");
+		int n=Integer.parseInt(br.readLine());
+		Process p[]=new Process[no];
+		for(int i=0; i<n; i++)
+		{
+			p[i]=new Process();
+			System.out.println("Enter Burst Time for Process "+(i+1));
+			p[i].burst=Integer.parseInt(br.readLine());		
+			System.out.println("Enter Priority for Process "+(i+1));
+			p[i].priority=Integer.parseInt(br.readLine());
+			p[i].number=i+1;
+		}
+
+		Func d=new Func();
+		d.prior(p,n);
+	}
+}
+
+class Func
+{
+	float avgwait=0, avgturn=0;
+	void prior(Process p[], int n)
+	{
+		int ctime=0;
+		Process temp;
+		for(int i=0; i<n-1; i++)
+			for(int j=0;j<n-1; j++)
+				if(p[j].priority>p[j+1].priority)
+				{
+					temp=p[j];
+					p[j]=p[j+1];
+					p[j+1]=temp;
+				}
+
+		System.out.println("Gantt Chart :");
+		for(int i=0; i<n; i++)
+		{
+			System.out.print("|| "+ctime+" ||  Process "+p[i].number+"  ");
+			p[i].waiting=ctime;
+			p[i].turnaround=p[i].waiting+p[i].burst;
+			ctime=ctime+p[i].burst;
+			avgwait=avgwait+p[i].waiting;
+			avgturn=avgturn+p[i].turnaround;
+		}
+		System.out.println("|| "+ctime+" ||");
+		System.out.println();
+		System.out.println("Process    Wait Time    Turnaround Time");	
+		for(int i=0; i<n; i++)
+		{
+			System.out.println(p[i].number+"\t\t"+p[i].waiting+"\t\t"+p[i].turnaround);
+		}
+		
+		System.out.println("Average Wait Time: "+(avgwait/n));
+		System.out.println("Average Turnaround Time: "+(avgturn/n));	
+	}
+}
+
+/* Output
+
+
+C:\Roshan\Java\OS>javac Priority.java
+
+C:\Roshan\Java\OS>java Priority
+Enter number of processes
+5
+Enter Burst Time for Process 1
+10
+Enter Priority for Process 1
+3
+Enter Burst Time for Process 2
+6
+Enter Priority for Process 2
+4
+Enter Burst Time for Process 3
+7
+Enter Priority for Process 3
+1
+Enter Burst Time for Process 4
+8
+Enter Priority for Process 4
+5
+Enter Burst Time for Process 5
+6
+Enter Priority for Process 5
+2
+
+Gantt Chart :
+|| 0 ||  Process 3  || 7 ||  Process 5  || 13 ||  Process 1  || 23 ||  Process  || 29 ||  Process 4  || 37 ||
+
+Process    Wait Time    Turnaround Time
+3               0               7
+5               7               13
+1               13              23
+2               23              29
+4               29              37
+
+Average Wait Time: 14.4
+Average Turnaround Time: 21.8
+
+
+*/

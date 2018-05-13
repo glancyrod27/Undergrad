@@ -1,0 +1,41 @@
+import java.io.*;
+class MSTree
+{
+	
+	void getdata()
+	{     
+	    
+	      System.out.println(" Enter the no of Nodes");
+	      int a=Integer.parseInt(br.readLine());
+	     System.out.println(" Enter the no of Edges");
+	      int b=Integer.parseInt(br.readLine());
+	      System.out.println(" Enter the  size of array");
+	         int n=Integer.parseInt(br.readLine());
+	              int w[]=new int[n];
+	               int e[][]=new int[n][n];
+	 	System.out.println(" Enter the names  of Edges");
+	  	 for(int i=0;i<n;i++)
+		   {
+			 for(int j=0;j<n;j++)
+	        	     	{
+	    	           		e[i][j]=Integer.parseInt(br.readLine());
+				 System.out.println(" Node from"+i+"to"+j);
+	       	     	}
+		  }
+		System.out.println(" Enter the weight of Edges");
+	   	    for(int i=0;i<n;i++)
+	       	      {
+			w[i]=Integer.parseInt(br.readLine());
+	        	       }
+
+	}
+}
+class KrusAlgo
+{
+    public static void main(String args[])Throws IOException
+    {	
+	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	   MSTree t =new MSTree;
+ 	    t.getdata();
+    }
+}

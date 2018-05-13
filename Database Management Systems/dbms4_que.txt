@@ -1,0 +1,19 @@
+DBMS EXPT 4 
+
+1.Retrieve the details of tickets which have the origin starting with character M.
+2. Retrieve the detAIls of tickets which contain the substring ADR.
+3.Retrieve the detAIls of tickets  in which the destination place contains exactly 6 characters.
+4. Retrieve the detAIls of tickets ordered by the boarding place.
+5. Select the details of tickets in ascending order of boarding place and descending order of origin.
+6. Select the total number of adults for each ticket grouped by the origin place.
+7. Select the details of tickets grouped by destination and  having total no. of adults greater than 2.
+8. Select ticket ID from table where boarding place is null.
+9. Select ticket id from table where origin is not null.
+10. Select details of tickets where boarding place is null and origin is not null.
+11.  same as 10 with OR.
+12. Select ticket id from table where ticket ID can be either 1 or 2.
+13. neither 2 nor 3.
+14. ticket id is greater than 1 and 3.
+15. ticket id is less than 3 and 4.
+16. Select the tickets of students who are enrolled with the department.
+17. Select the details of students whose marks are less than 40 or 60.

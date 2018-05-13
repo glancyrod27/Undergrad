@@ -1,0 +1,94 @@
+QNO-3) QUICKSORT PROGRAM
+
+import java.io.*;
+class Data
+{
+int a[];
+static int n;
+BufferedReader input =new BufferedReader(new InputStreamReader(System.in));
+Data ()throws IOException
+{
+System.out.println("enter no of values");
+n=Integer.parseInt(input.readLine());
+a=new int[n];
+}
+void read()throws IOException
+{
+int i;
+for(i=0;i<n;i++)
+{
+System.out.println("enter value");
+a[i]=Integer.parseInt(input.readLine());
+}
+}
+void display()
+{
+int i;
+System.out.println("SORTED LIST IS");
+for(i=0;i<n;i++)
+System.out.print(" "+a[i]);
+System.out.println();
+}
+void quicksort(int lb,int ub)
+{
+int j=0;
+if(lb >= ub)
+return;
+j=partition(lb,ub,j);
+quicksort(lb,j-1);
+quicksort(j+1,ub);
+}
+int partition(int lb,int ub,int pj)
+{
+int up,down,temp,x;
+x=a[lb];
+up=ub;
+down=lb;
+while(down < up)
+{
+while(a[down] <= x && down < up)
+down++;
+while(a[up] > x)
+up--;
+if(down < up)
+{
+temp=a[down];
+a[down]=a[up];
+a[up]=temp;
+}
+}
+a[lb]=a[up];
+a[up]=x;
+pj=up;
+return(pj);
+}
+public static void main(String [] args)throws IOException
+{
+Data d=new Data();
+d.read();
+d.quicksort(0,n-1);
+d.display();
+}
+}
+
+o/p
+enter no of values
+8
+enter value
+12
+enter value
+56
+enter value
+13
+enter value
+65
+enter value
+47
+enter value
+89
+enter value
+14
+enter value
+57
+SORTED LIST IS
+12 13 14 47 56 57 65 89

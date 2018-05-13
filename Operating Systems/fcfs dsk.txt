@@ -1,0 +1,58 @@
+package os72;
+
+
+import java.io.*;
+
+class FCFS
+{
+    public static void main(String args[])throws IOException
+    {
+        int seq[];
+        int n,m,i,avg,cylinder=0;
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        
+        System.out.println("enter no of entries");
+        n=Integer.parseInt(br.readLine());
+        seq=new int[n];
+        System.out.println("enter entries");
+        for(i=0;i<n;i++)
+        {
+            seq[i]=Integer.parseInt(br.readLine());
+        }
+        System.out.println("enter the starting entry");
+          m=Integer.parseInt(br.readLine());
+    
+    cylinder=Math.abs(m-seq[0]);
+        for(i=1;i<n;i++)
+        {
+            cylinder=cylinder+Math.abs(seq[i]-seq[i-1]);
+        }
+    System.out.println("no of cylinder="+cylinder);
+    avg=cylinder/n;
+    System.out.println("avg seek time="+avg);
+    }
+}
+
+
+
+/*init:
+deps-jar:
+Compiling 1 source file to C:\Users\Administrator\Documents\NetBeansProjects\os72\build\classes
+compile-single:
+run-single:
+enter no of entries
+8
+enter entries
+98
+183
+37
+122
+14
+124
+65
+67
+enter the starting entry
+53
+no of cylinder=640
+avg seek time=80
+BUILD SUCCESSFUL (total time: 20 seconds)*/

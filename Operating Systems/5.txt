@@ -1,0 +1,144 @@
+import java.io.*;
+
+class Process
+{
+	int id, burst2, burst, arrival, waiting=0, turnaround, end=0;
+}
+class RoundRobin
+{
+	public static void main(String args[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter number of processes");
+		int no=Integer.parseInt(br.readLine());
+		Process p[]=new Process[no];
+		for(int i=0; i<no; i++)
+		{
+			p[i]=new Process();
+			System.out.println("Enter Burst Time for Process "+(i+1));
+			p[i].burst=Integer.parseInt(br.readLine());		
+			p[i].burst2=p[i].burst;
+			System.out.println("Enter Arrival Time for Process "+(i+1));
+			p[i].arrival=Integer.parseInt(br.readLine());
+			p[i].id=i+1;
+		}
+
+		System.out.println("Enter Time quantum");
+		int quantum=Integer.parseInt(br.readLine());
+	
+		Func d=new Func();
+		d.robin(p,no,quantum);
+	}
+}
+
+class Func
+{
+	void robin(Process p[], int no, int quantum)
+	{
+		float avgwait=0, avgturn=0;
+		int ctime=0,tburst=0;
+		Process temp;
+		for(int i=0; i<no-1; i++)
+			for(int j=0;j<no-1; j++)
+				if(p[j].arrival>p[j+1].arrival)
+				{
+					temp=p[j];
+					p[j]=p[j+1];
+					p[j+1]=temp;
+				}
+
+		for(int i=0; i<no; i++)
+		{
+			tburst=tburst+p[i].burst;
+		}
+
+		System.out.println("Gantt Chart :");
+		int i=0;
+		while(i<no)
+		{
+			if(p[i].burst>0)
+			{
+				if(p[i].burst<quantum)
+				{
+					System.out.print("|| "+ctime+" ||  Process "+p[i].id+"  ");
+					p[i].waiting=p[i].waiting+ctime-p[i].end;
+					ctime=ctime+p[i].burst;
+				}
+				else
+				{
+					System.out.print("|| "+ctime+" ||  Process "+p[i].id+"  ");
+					if(ctime+p[i].burst==tburst)
+					{
+						p[i].waiting=p[i].waiting+ctime-p[i].end;
+						ctime=tburst;
+						break;
+					}
+					p[i].waiting=p[i].waiting+ctime-p[i].end;
+					ctime=ctime+quantum;
+					p[i].end=ctime;
+				}
+				
+				p[i].burst=p[i].burst-quantum;
+				
+			}
+		
+			i++;
+			if(ctime<tburst&&i==no)
+			i=0;			
+		}
+		System.out.println("|| "+ctime+" ||");
+
+		for(i=0; i<no; i++)						// calculate Turnaround Time
+		p[i].turnaround=p[i].waiting+p[i].burst2;
+
+		System.out.println("Process    Wait Time    Turnaround Time");	
+		for(i=0; i<no; i++)
+		{
+			System.out.println(p[i].id+"\t\t"+p[i].waiting+"\t\t"+p[i].turnaround);
+		}
+
+		for(i=0; i<no; i++)						// Calculate Average Waiting and Turnaround Time
+		{
+			avgwait=avgwait+p[i].waiting;
+			avgturn=avgturn+p[i].turnaround;
+		}
+
+		System.out.println("Average Wait Time: "+(avgwait/no)); 
+		System.out.println("Average Turnaround Time: "+(avgturn/no));
+	}			
+}
+
+
+/* Output
+
+C:\Roshan\Java\OS>java RoundRobin
+Enter number of processes
+3
+Enter Burst Time for Process 1
+24
+Enter Arrival Time for Process 1
+0
+Enter Burst Time for Process 2
+3
+Enter Arrival Time for Process 2
+0
+Enter Burst Time for Process 3
+3
+Enter Arrival Time for Process 3
+0
+Enter Time quantum
+5
+
+Gantt Chart:
+|| 0 ||  Process 1  || 5 ||  Process 2  || 8 ||  Process 3  || 11 ||  Process 1 || 30 ||
+
+Process    Wait Time    Turnaround Time
+1               6               30
+2               5               8
+3               8               11
+
+Average Wait Time: 6.3333335
+Average Turnaround Time: 16.333334
+
+*/
+

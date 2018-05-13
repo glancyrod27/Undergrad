@@ -1,0 +1,288 @@
+
+SQL> update student_JJ set emailid='bjshkk_dhg@hotmail';
+
+3 rows updated.
+
+SQL> select emailid from student_JJ;
+
+EMAILID
+--------------------
+bjshkk_dhg@hotmail
+bjshkk_dhg@hotmail
+bjshkk_dhg@hotmail
+
+SQL>
+
+
+
+SQL> select * from student_JJ;
+
+        ID NAME                      CLASS      DEPARTMENT        AGE      MARKS
+---------- ------------------------- ---------- ---------- ---------- ----------
+PHONENUMBER ADDRESS                        EMAILID
+----------- ------------------------------ --------------------
+         1 Harshall                     se A       cmpn               20         65
+  247528985 garden court                   bjshkk_dhg@hotmail
+
+         2 jinson                      se A       cmpn               19         85
+    2598985 mainland court                 bjshkk_dhg@hotmail
+
+         3 aum                       se A       cmpn               19         75
+    2235985 silver line                    bjshkk_dhg@hotmail
+
+
+SQL>
+
+
+
+
+
+SQL*Plus: Release 11.2.0.1.0 Production on Mon Jan 23 13:54:52 2012
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott@oracle
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.1.0.6.0 - Production
+
+SQL> create table student (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30));
+create table student (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table Stud (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30));
+create table Stud (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table students (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30));
+create table students (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table student_JJ (id number(5), name varchar2(25), class varchar2(10),department varchar2(10), age number(5), marks number(5),phonenumber number(15),address varchar2(30));
+
+Table created.
+
+SQL> insert into student_JJ values(1,'Harshall','se A','cmpn',20,65,247528985,'garden court');
+
+1 row created.
+
+SQL> insert into student_JJ values(2,'jinson','se A','cmpn',85,2598985,'mainland court');
+insert into student_JJ values(2,'jinson','se A','cmpn',85,2598985,'mainland court')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into student_JJ values(2,'jinson','se A','cmpn',19,85,2598985,'mainland court');
+
+1 row created.
+
+SQL> insert into student_JJ values(3,'aum','se A','cmpn',19,75,2235985,'silver line');
+
+1 row created.
+
+SQL> select * from student_JJ;
+
+        ID NAME                      CLASS      DEPARTMENT        AGE      MARKS
+---------- ------------------------- ---------- ---------- ---------- ----------
+PHONENUMBER ADDRESS
+----------- ------------------------------
+         1 Harshall                     se A       cmpn               20         65
+  247528985 garden court
+
+         2 jinson                      se A       cmpn               19         85
+    2598985 mainland court
+
+         3 aum                       se A       cmpn               19         75
+    2235985 silver line
+
+
+SQL> select name from student_JJ;
+
+NAME
+-------------------------
+Harshall
+jinson
+aum
+
+SQL> desc student_JJ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(25)
+ CLASS                                              VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ AGE                                                NUMBER(5)
+ MARKS                                              NUMBER(5)
+ PHONENUMBER                                        NUMBER(15)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> create table book_JJ(title varchar2(20),author varchar2(20),publisher varchar2(20),year of publication number(10),year of copies sold number(10));
+create table book_JJ(title varchar2(20),author varchar2(20),publisher varchar2(20),year of publication number(10),year of copies sold number(10))
+                                                                                       *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> create table book_JJ (title varchar2(20),author varchar2(20),publisher varchar2(20),year of publication number(10),year of copies sold number(10));
+create table book_JJ (title varchar2(20),author varchar2(20),publisher varchar2(20),year of publication number(10),year of copies sold number(10))
+                                                                                        *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> create table book_JJ (title varchar2(20),author varchar2(20),publisher varchar2(20),yearofpublication number(10),yearofcopiessold number(10));
+
+Table created.
+
+SQL> desc book_JJ
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TITLE                                              VARCHAR2(20)
+ AUTHOR                                             VARCHAR2(20)
+ PUBLISHER                                          VARCHAR2(20)
+ YEAROFPUBLICATION                                  NUMBER(10)
+ YEAROFCOPIESSOLD                                   NUMBER(10)
+
+SQL> alter table book_JJ add (emailid varchar(20));
+
+Table altered.
+
+SQL> desc book_JJ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TITLE                                              VARCHAR2(20)
+ AUTHOR                                             VARCHAR2(20)
+ PUBLISHER                                          VARCHAR2(20)
+ YEAROFPUBLICATION                                  NUMBER(10)
+ YEAROFCOPIESSOLD                                   NUMBER(10)
+ EMAILID                                            VARCHAR2(20)
+
+SQL> alter table book_JJ Drop col6;
+alter table book_JJ Drop col6
+                        *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table book_JJ Drop colemailid;
+alter table book_JJ Drop colemailid
+                        *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table book_JJ Drop emailid;
+alter table book_JJ Drop emailid
+                        *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> alter table book_JJ Drop (emailid);
+
+Table altered.
+
+SQL> desc book_JJ
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TITLE                                              VARCHAR2(20)
+ AUTHOR                                             VARCHAR2(20)
+ PUBLISHER                                          VARCHAR2(20)
+ YEAROFPUBLICATION                                  NUMBER(10)
+ YEAROFCOPIESSOLD                                   NUMBER(10)
+
+SQL> alter table student_JJ add (emailid varchar2(20));
+
+Table altered.
+
+SQL> desc student_JJ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(5)
+ NAME                                               VARCHAR2(25)
+ CLASS                                              VARCHAR2(10)
+ DEPARTMENT                                         VARCHAR2(10)
+ AGE                                                NUMBER(5)
+ MARKS                                              NUMBER(5)
+ PHONENUMBER                                        NUMBER(15)
+ ADDRESS                                            VARCHAR2(30)
+ EMAILID                                            VARCHAR2(20)
+
+SQL> insert into book_JJ ('blue whales','dan black','ken',2009,2009);
+insert into book_JJ ('blue whales','dan black','ken',2009,2009)
+                    *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into book_JJ values ('blue whales','dan black','ken',2009,2009);
+
+1 row created.
+
+SQL> insert into book_JJ values ('aparna','aparna','carl',2009,2010);
+
+1 row created.
+
+SQL> select * from book_JJ;
+
+TITLE                AUTHOR               PUBLISHER            YEAROFPUBLICATION
+-------------------- -------------------- -------------------- -----------------
+YEAROFCOPIESSOLD
+----------------
+blue whales          dan black            ken                               2009
+            2009
+
+	               aparna               carl                              2009
+            2010
+
+
+
+
+SQL> alter table book_JJ Drop (yearofpublication);
+
+Table altered.
+
+SQL> delete from book_JJ (rows1,rows2);
+delete from book_JJ (rows1,rows2)
+                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> delete from book_JJ (rows1);
+delete from book_JJ (rows1)
+                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> delete from book_JJ ;
+
+2 rows deleted.
+
+SQL> delete from book_JJ;
+
+0 rows deleted.
+
+SQL> delete book_JJ;
+
+0 rows deleted.
+
+SQL> Drop table book_JJ;
+
+Table dropped.
+
+SQL>
+
+

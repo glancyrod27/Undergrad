@@ -1,0 +1,206 @@
+import java.io.*;
+
+class Stack
+
+{
+	int maxsize=10;
+	int top;
+	int[]ele;
+	Stack()
+	{
+		ele=new int[maxsize];
+		top=-1;
+	}
+	void push(int x)
+	{
+		if(top==maxsize-1)
+		{
+			System.out.println("Stack is full");
+			top=top+1;
+			ele[top]=x;
+			System.out.println(+x+" is inserted successfully");
+		}
+	}
+	void pop()
+	{
+		if(top==-1)
+		{
+			System.out.println("Underflow");
+		}
+		else
+		{
+			System.out.println(+ele[top]+"Successfully deleted");
+			top--;
+		}
+	}
+	void peek()
+	{
+		if(top==-1)
+		{
+			System.out.println("Stack is empty");
+		}
+		else
+		{
+			System.out.println("The top element is"+ele[top]);
+  		}
+	}
+	void display()
+	{
+		for(int i=top;i>=0;i--)
+		{	
+			System.out.println(+ele[i]);
+		}
+	}
+}
+
+class Expt7a
+{
+	public static void main(String args[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		Stack s=new Stack();
+		 do
+ 		  {
+			System.out.println("Enter a choice\n1.push\n2.pop\n3.Display\n4.find the top element");
+			int ch=Integer.parseInt(br.readLine());
+			switch(ch)
+			  {
+				case 1:    
+					{
+   						System.out.print("Enter a element to add ");
+						int v=Integer.parseInt(br.readLine());
+						s.push(v);
+						break;
+					}
+				case 2:	
+					{	
+						s.pop();
+						break;
+					}	
+				case 3:										
+					{	
+						s.display();
+						break;
+					}
+				case 4:		
+					{
+						s.peek();
+						break;
+			 	  	}
+
+			  }
+			System.out.print("To continue press Y ");
+		  }
+		while(br.readLine().equalsIgnoreCase("Y"));
+ 
+	}
+}
+
+/*
+Output
+
+D:\>javac Expt7a.java
+
+D:\>java Expt7a
+
+ Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+1
+
+Enter a element to add 23
+
+23 is inserted successfully
+
+To continue press Y y
+
+Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+2
+
+23Successfully deleted
+
+To continue press Y y
+
+Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+2
+
+Underflow
+
+To continue press Y y
+
+Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+1
+
+Enter a element to add 233
+
+233 is inserted successfully
+
+To continue press Y y
+
+Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+3
+
+233
+
+To continue press Y y
+
+Enter a choice
+
+1.push
+
+2.pop
+
+3.Display
+
+4.find the top element
+
+4
+
+The top element is233
+
+To continue press Y
+
+*/

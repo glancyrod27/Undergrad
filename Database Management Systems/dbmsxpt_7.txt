@@ -1,0 +1,300 @@
+old   5: i:=&i;
+new   5: i:=56;
+Enter value for j: 78
+old   6: j:=&j;
+new   6: j:=78;
+Greater is78
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  loop
+  5  dbms_output.put_line(i);
+  6  a+:=1;
+  7  exit when a>5;
+  8  end loop;
+  9* End;
+SQL> /
+a+:=1;
+ *
+ERROR at line 6:
+ORA-06550: line 6, column 2:
+PLS-00103: Encountered the symbol "+" when expecting one of the following:
+:= . ( @ % ;
+The symbol "+" was ignored.
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  loop
+  5  dbms_output.put_line(i);
+  6  a:=a+1;
+  7  exit when a>5;
+  8  end loop;
+  9* End;
+SQL> /
+a:=a+1;
+*
+ERROR at line 6:
+ORA-06550: line 6, column 1:
+PLS-00363: expression 'A' cannot be used as an assignment target
+ORA-06550: line 6, column 1:
+PL/SQL: Statement ignored
+ORA-06550: line 7, column 11:
+PLS-00357: Table,View Or Sequence reference 'A' not allowed in this context
+ORA-06550: line 7, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  loop
+  5  dbms_output.put_line(i);
+  6  i:=i+1;
+  7  exit when i>5;
+  8  end loop;
+  9* End;
+SQL> /
+Declare
+*
+ERROR at line 1:
+ORA-06500: PL/SQL: storage error
+ORA-04030: out of process memory when trying to allocate 16396 bytes (koh-kghu
+sessi,pmucalm coll)
+ORA-06512: at "SYS.DBMS_OUTPUT", line 125
+ORA-06512: at "SYS.DBMS_OUTPUT", line 113
+ORA-06512: at line 5
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4)=1;
+  3  Begin
+  4  loop
+  5  dbms_output.put_line(i);
+  6  i:=i+1;
+  7  exit when i>5;
+  8  end loop;
+  9* End;
+SQL> /
+i number(4)=1;
+           *
+ERROR at line 2:
+ORA-06550: line 2, column 12:
+PLS-00103: Encountered the symbol "=" when expecting one of the following:
+:= ; not null default character
+The symbol ":= was inserted before "=" to continue.
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4):=1;
+  3  Begin
+  4  loop
+  5  dbms_output.put_line(i);
+  6  i:=i+1;
+  7  exit when i>5;
+  8  end loop;
+  9* End;
+SQL> /
+1
+2
+3
+4
+5
+
+PL/SQL procedure successfully completed.
+
+SQL>  ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  i:=&i;
+  5  for i in 1..10 loop
+  6  dbms_output.put_line(i);
+  7  i:=i+1;
+  8  end loop;
+  9* End;
+SQL> /
+Enter value for i: 1
+old   4: i:=&i;
+new   4: i:=1;
+i:=i+1;
+*
+ERROR at line 7:
+ORA-06550: line 7, column 1:
+PLS-00363: expression 'I' cannot be used as an assignment target
+ORA-06550: line 7, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  i:=&i;
+  5  for i in 1..10 loop
+  6  dbms_output.put_line(i);
+  7  end loop;
+  8* End;
+SQL> /
+Enter value for i: 1
+old   4: i:=&i;
+new   4: i:=1;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  i:=&i;
+  5  for i in 1..10 loop
+  6  dbms_output.put_line(i | 'Simba');
+  7  end loop;
+  8* End;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  Begin
+  4  i:=&i;
+  5  for i in 1..10 loop
+  6  dbms_output.put_line(i||'Simba');
+  7  end loop;
+  8* End;
+SQL> /
+Enter value for i: 1
+old   4: i:=&i;
+new   4: i:=1;
+1Simba
+2Simba
+3Simba
+4Simba
+5Simba
+6Simba
+7Simba
+8Simba
+9Simba
+10Simba
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  fact number(4):=1;
+  4  Begin
+  5  i:=&i;
+  6  for i in 1..i loop
+  7  fact:=fact*i;
+  8  end loop;
+  9  dbms_output.put_line(i||'Simba');
+ 10* End;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  fact number(4):=1;
+  4  Begin
+  5  i:=&i;
+  6  for i in 1..i loop
+  7  fact:=fact*i;
+  8  end loop;
+  9  dbms_output.put_line(fact);
+ 10* End;
+SQL> /
+Enter value for i: 5
+old   5: i:=&i;
+new   5: i:=5;
+for i in 1..i loop
+            *
+ERROR at line 6:
+ORA-06550: line 6, column 13:
+PLS-00364: loop index variable 'I' use is invalid
+ORA-06550: line 6, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  fact number(4):=1;
+  4  Begin
+  5  i:=&i;
+  6  for i in 1..&i loop
+  7  fact:=fact*i;
+  8  end loop;
+  9  dbms_output.put_line(fact);
+ 10* End;
+SQL> /
+Enter value for i: 5
+old   5: i:=&i;
+new   5: i:=5;
+Enter value for i: 5
+old   6: for i in 1..&i loop
+new   6: for i in 1..5 loop
+120
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  Declare
+  2  i number(4);
+  3  fact number(4):=1;
+  4  Begin
+  5  for i in 1..&i loop
+  6  fact:=fact*i;
+  7  end loop;
+  8  dbms_output.put_line(fact);
+  9* End;
+SQL> /
+Enter value for i: 5
+old   5: for i in 1..&i loop
+new   5: for i in 1..5 loop
+120
+
+PL/SQL procedure successfully completed.
+
+SQL>

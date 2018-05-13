@@ -1,0 +1,900 @@
+
+DOI       DOI2
+--------- ---------
+01-APR-96 01-JUN-96
+12-APR-96 12-JUN-96
+21-APR-96 21-JUN-96
+25-APR-96 25-JUN-96
+30-APR-96 30-JUN-96
+
+SQL> select dot last_day(dot)dot2 from db2;
+select dot last_day(dot)dot2 from db2
+                   *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select dot,last_day(dot)dot2 from db2;
+select dot,last_day(dot)dot2 from db2
+                                  *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select dot,last_day(dot)dot2 from db3;
+
+DOT       DOT2
+--------- ---------
+10-MAY-96 31-MAY-96
+05-MAY-96 31-MAY-96
+15-MAY-96 31-MAY-96
+25-MAY-96 31-MAY-96
+22-MAY-96 31-MAY-96
+
+SQL> select doi,dot,months_between(doi.dot)"bet"from db3;
+select doi,dot,months_between(doi.dot)"bet"from db3
+               *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> select doi,dot,months_between(doi,dot)"bet"from db3;
+
+DOI       DOT              bet
+--------- --------- ----------
+01-APR-96 10-MAY-96 -1.2903226
+12-APR-96 05-MAY-96 -.77419355
+21-APR-96 15-MAY-96 -.80645161
+25-APR-96 25-MAY-96         -1
+30-APR-96 22-MAY-96 -.74193548
+
+SQL> select doi,dot,months_between(dot,doi)"bet"from db3;
+
+DOI       DOT              bet
+--------- --------- ----------
+01-APR-96 10-MAY-96 1.29032258
+12-APR-96 05-MAY-96 .774193548
+21-APR-96 15-MAY-96 .806451613
+25-APR-96 25-MAY-96          1
+30-APR-96 22-MAY-96 .741935484
+
+SQL> select dot,next_day(dot,'friday')"fri" from db3;
+
+DOT       fri
+--------- ---------
+10-MAY-96 17-MAY-96
+05-MAY-96 10-MAY-96
+15-MAY-96 17-MAY-96
+25-MAY-96 31-MAY-96
+22-MAY-96 24-MAY-96
+
+SQL> selct upper(destination)from db3;
+SP2-0734: unknown command beginning "selct uppe..." - rest of line ignored.
+SQL> select upper(destination)from db3;
+
+UPPER(DEST
+----------
+MADHURAI
+MADRAS
+MADRAS
+MADRAS
+COCHIN
+
+SQL> select inhitcap(destination)from db3;
+select inhitcap(destination)from db3
+       *
+ERROR at line 1:
+ORA-00904: "INHITCAP": invalid identifier
+
+
+SQL> select initcap(destination)from db3;
+
+INITCAP(DE
+----------
+Madhurai
+Madras
+Madras
+Madras
+Cochin
+
+SQL> select lower(destination,origin,Board_place)from db3;
+select lower(destination,origin,Board_place)from db3
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> select lower(Board_place)from db3;
+
+LOWER(BOARD_
+------------
+parrys
+kkanagar
+cubon_park
+charminar
+parrys
+
+SQL> select lower(destination)from db3;
+
+LOWER(DEST
+----------
+madhurai
+madras
+madras
+madras
+cochin
+
+SQL> select lower(origin)from db3;
+
+LOWER(ORIG
+----------
+madras
+madhurai
+banglore
+hyderbad
+madras
+
+SQL> select rtrim("hyderbad",e)right_trim from dual;
+select rtrim("hyderbad",e)right_trim from dual
+                        *
+ERROR at line 1:
+ORA-00904: "E": invalid identifier
+
+
+SQL> select rtrim("hyderbad",'e')right_trim from dual;
+select rtrim("hyderbad",'e')right_trim from dual
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim("hyderbad",'erbad') from db3;
+select Rtrim("hyderbad",'erbad') from db3
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim('hyderbad','erbad') from db3;
+
+RT
+--
+hy
+hy
+hy
+hy
+hy
+
+SQL> select Ltrim('hyderbad','hydr') from db3;
+
+LTRIM
+-----
+erbad
+erbad
+erbad
+erbad
+erbad
+
+SQL> select Rtrim('hyderbad','rbad') from db3;
+
+RTRI
+----
+hyde
+hyde
+hyde
+hyde
+hyde
+
+SQL> select Ltrim('hyderbad','hyder') from db3;
+
+LTR
+---
+bad
+bad
+bad
+bad
+bad
+
+SQL> select DAY,Round(DAY,'year')"yer1"from db3;
+select DAY,Round(DAY,'year')"yer1"from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select DAY,Round(DAY,'year')"yer1" from db3;
+select DAY,Round(DAY,'year')"yer1" from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select doi,Round(doi,'year')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-JAN-96
+12-APR-96 01-JAN-96
+21-APR-96 01-JAN-96
+25-APR-96 01-JAN-96
+30-APR-96 01-JAN-96
+
+SQL> select doi,Round(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-MAY-96
+25-APR-96 01-MAY-96
+30-APR-96 01-MAY-96
+
+SQL> select doi,Round(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 14-APR-96
+21-APR-96 21-APR-96
+25-APR-96 28-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trun(to_date("doi")'year');
+select doi,trun(to_date("doi")'year')
+                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,trun(to_date("doi"),'year') from db3;
+select doi,trun(to_date("doi"),'year') from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUN": invalid identifier
+
+
+SQL> select doi,trunc(to_date("doi"),'year') from db3;
+select doi,trunc(to_date("doi"),'year') from db3
+                         *
+ERROR at line 1:
+ORA-00904: "doi": invalid identifier
+
+
+SQL> select doi,truncate(doi,'day')"yer1" from db3;
+select doi,truncate(doi,'day')"yer1" from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUNCATE": invalid identifier
+
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trunc(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-APR-96
+25-APR-96 01-APR-96
+30-APR-96 01-APR-96
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL>
+10-MAY-96 17-MAY-96
+05-MAY-96 10-MAY-96
+15-MAY-96 17-MAY-96
+25-MAY-96 31-MAY-96
+22-MAY-96 24-MAY-96
+
+SQL> selct upper(destination)from db3;
+SP2-0734: unknown command beginning "selct uppe..." - rest of line ignored.
+SQL> select upper(destination)from db3;
+
+UPPER(DEST
+----------
+MADHURAI
+MADRAS
+MADRAS
+MADRAS
+COCHIN
+
+SQL> select inhitcap(destination)from db3;
+select inhitcap(destination)from db3
+       *
+ERROR at line 1:
+ORA-00904: "INHITCAP": invalid identifier
+
+
+SQL> select initcap(destination)from db3;
+
+INITCAP(DE
+----------
+Madhurai
+Madras
+Madras
+Madras
+Cochin
+
+SQL> select lower(destination,origin,Board_place)from db3;
+select lower(destination,origin,Board_place)from db3
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> select lower(Board_place)from db3;
+
+LOWER(BOARD_
+------------
+parrys
+kkanagar
+cubon_park
+charminar
+parrys
+
+SQL> select lower(destination)from db3;
+
+LOWER(DEST
+----------
+madhurai
+madras
+madras
+madras
+cochin
+
+SQL> select lower(origin)from db3;
+
+LOWER(ORIG
+----------
+madras
+madhurai
+banglore
+hyderbad
+madras
+
+SQL> select rtrim("hyderbad",e)right_trim from dual;
+select rtrim("hyderbad",e)right_trim from dual
+                        *
+ERROR at line 1:
+ORA-00904: "E": invalid identifier
+
+
+SQL> select rtrim("hyderbad",'e')right_trim from dual;
+select rtrim("hyderbad",'e')right_trim from dual
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim("hyderbad",'erbad') from db3;
+select Rtrim("hyderbad",'erbad') from db3
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim('hyderbad','erbad') from db3;
+
+RT
+--
+hy
+hy
+hy
+hy
+hy
+
+SQL> select Ltrim('hyderbad','hydr') from db3;
+
+LTRIM
+-----
+erbad
+erbad
+erbad
+erbad
+erbad
+
+SQL> select Rtrim('hyderbad','rbad') from db3;
+
+RTRI
+----
+hyde
+hyde
+hyde
+hyde
+hyde
+
+SQL> select Ltrim('hyderbad','hyder') from db3;
+
+LTR
+---
+bad
+bad
+bad
+bad
+bad
+
+SQL> select DAY,Round(DAY,'year')"yer1"from db3;
+select DAY,Round(DAY,'year')"yer1"from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select DAY,Round(DAY,'year')"yer1" from db3;
+select DAY,Round(DAY,'year')"yer1" from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select doi,Round(doi,'year')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-JAN-96
+12-APR-96 01-JAN-96
+21-APR-96 01-JAN-96
+25-APR-96 01-JAN-96
+30-APR-96 01-JAN-96
+
+SQL> select doi,Round(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-MAY-96
+25-APR-96 01-MAY-96
+30-APR-96 01-MAY-96
+
+SQL> select doi,Round(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 14-APR-96
+21-APR-96 21-APR-96
+25-APR-96 28-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trun(to_date("doi")'year');
+select doi,trun(to_date("doi")'year')
+                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,trun(to_date("doi"),'year') from db3;
+select doi,trun(to_date("doi"),'year') from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUN": invalid identifier
+
+
+SQL> select doi,trunc(to_date("doi"),'year') from db3;
+select doi,trunc(to_date("doi"),'year') from db3
+                         *
+ERROR at line 1:
+ORA-00904: "doi": invalid identifier
+
+
+SQL> select doi,truncate(doi,'day')"yer1" from db3;
+select doi,truncate(doi,'day')"yer1" from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUNCATE": invalid identifier
+
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trunc(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-APR-96
+25-APR-96 01-APR-96
+30-APR-96 01-APR-96
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,dot_(numtodsinterval(60,'doj')"k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj')"k1" from db3
+                                         *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,dot_(numtodsinterval(60,'doj') "k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj') "k1" from db3
+                                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,dot_(numtodsinterval(60,'doj')) "k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj')) "k1" from db3
+           *
+ERROR at line 1:
+ORA-00904: "DOT_": invalid identifier
+
+
+SQL> select doi_(numtodsinterval(60,'doj') "k1" from db3;
+select doi_(numtodsinterval(60,'doj') "k1" from db3
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi_(numtodsinterval(60,'doj')) "k1" from db3;
+select doi_(numtodsinterval(60,'doj')) "k1" from db3
+       *
+ERROR at line 1:
+ORA-00904: "DOI_": invalid identifier
+
+
+SQL> selectdoj, doj-(numtodsinterval(60,'day')) "k1" from db3;
+SP2-0734: unknown command beginning "selectdoj,..." - rest of line ignored.
+SQL> select doj, doj-(numtodsinterval(60,'day')) "k1" from db3;
+select doj, doj-(numtodsinterval(60,'day')) "k1" from db3
+            *
+ERROR at line 1:
+ORA-00904: "DOJ": invalid identifier
+
+
+SQL> select doi, doi-(numtodsinterval(60,'day')) "k1" from db3;
+
+DOI       k1
+--------- ---------
+01-APR-96 01-FEB-96
+12-APR-96 12-FEB-96
+21-APR-96 21-FEB-96
+25-APR-96 25-FEB-96
+30-APR-96 01-MAR-96
+
+SQL> select doi, doi+(numtodsinterval(30,'day')) "k1" from db3;
+
+DOI       k1
+--------- ---------
+01-APR-96 01-MAY-96
+12-APR-96 12-MAY-96
+21-APR-96 21-MAY-96
+25-APR-96 25-MAY-96
+30-APR-96 30-MAY-96
+
+SQL>
+cubon_park
+charminar
+parrys
+
+SQL> select lower(destination)from db3;
+
+LOWER(DEST
+----------
+madhurai
+madras
+madras
+madras
+cochin
+
+SQL> select lower(origin)from db3;
+
+LOWER(ORIG
+----------
+madras
+madhurai
+banglore
+hyderbad
+madras
+
+SQL> select rtrim("hyderbad",e)right_trim from dual;
+select rtrim("hyderbad",e)right_trim from dual
+                        *
+ERROR at line 1:
+ORA-00904: "E": invalid identifier
+
+
+SQL> select rtrim("hyderbad",'e')right_trim from dual;
+select rtrim("hyderbad",'e')right_trim from dual
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim("hyderbad",'erbad') from db3;
+select Rtrim("hyderbad",'erbad') from db3
+             *
+ERROR at line 1:
+ORA-00904: "hyderbad": invalid identifier
+
+
+SQL> select Rtrim('hyderbad','erbad') from db3;
+
+RT
+--
+hy
+hy
+hy
+hy
+hy
+
+SQL> select Ltrim('hyderbad','hydr') from db3;
+
+LTRIM
+-----
+erbad
+erbad
+erbad
+erbad
+erbad
+
+SQL> select Rtrim('hyderbad','rbad') from db3;
+
+RTRI
+----
+hyde
+hyde
+hyde
+hyde
+hyde
+
+SQL> select Ltrim('hyderbad','hyder') from db3;
+
+LTR
+---
+bad
+bad
+bad
+bad
+bad
+
+SQL> select DAY,Round(DAY,'year')"yer1"from db3;
+select DAY,Round(DAY,'year')"yer1"from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select DAY,Round(DAY,'year')"yer1" from db3;
+select DAY,Round(DAY,'year')"yer1" from db3
+                 *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> select doi,Round(doi,'year')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-JAN-96
+12-APR-96 01-JAN-96
+21-APR-96 01-JAN-96
+25-APR-96 01-JAN-96
+30-APR-96 01-JAN-96
+
+SQL> select doi,Round(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-MAY-96
+25-APR-96 01-MAY-96
+30-APR-96 01-MAY-96
+
+SQL> select doi,Round(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 14-APR-96
+21-APR-96 21-APR-96
+25-APR-96 28-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trun(to_date("doi")'year');
+select doi,trun(to_date("doi")'year')
+                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,trun(to_date("doi"),'year') from db3;
+select doi,trun(to_date("doi"),'year') from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUN": invalid identifier
+
+
+SQL> select doi,trunc(to_date("doi"),'year') from db3;
+select doi,trunc(to_date("doi"),'year') from db3
+                         *
+ERROR at line 1:
+ORA-00904: "doi": invalid identifier
+
+
+SQL> select doi,truncate(doi,'day')"yer1" from db3;
+select doi,truncate(doi,'day')"yer1" from db3
+           *
+ERROR at line 1:
+ORA-00904: "TRUNCATE": invalid identifier
+
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,trunc(doi,'month')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 01-APR-96
+12-APR-96 01-APR-96
+21-APR-96 01-APR-96
+25-APR-96 01-APR-96
+30-APR-96 01-APR-96
+
+SQL> select doi,trunc(doi,'day')"yer1" from db3;
+
+DOI       yer1
+--------- ---------
+01-APR-96 31-MAR-96
+12-APR-96 07-APR-96
+21-APR-96 21-APR-96
+25-APR-96 21-APR-96
+30-APR-96 28-APR-96
+
+SQL> select doi,dot_(numtodsinterval(60,'doj')"k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj')"k1" from db3
+                                         *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,dot_(numtodsinterval(60,'doj') "k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj') "k1" from db3
+                                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi,dot_(numtodsinterval(60,'doj')) "k1" from db3;
+select doi,dot_(numtodsinterval(60,'doj')) "k1" from db3
+           *
+ERROR at line 1:
+ORA-00904: "DOT_": invalid identifier
+
+
+SQL> select doi_(numtodsinterval(60,'doj') "k1" from db3;
+select doi_(numtodsinterval(60,'doj') "k1" from db3
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select doi_(numtodsinterval(60,'doj')) "k1" from db3;
+select doi_(numtodsinterval(60,'doj')) "k1" from db3
+       *
+ERROR at line 1:
+ORA-00904: "DOI_": invalid identifier
+
+
+SQL> selectdoj, doj-(numtodsinterval(60,'day')) "k1" from db3;
+SP2-0734: unknown command beginning "selectdoj,..." - rest of line ignored.
+SQL> select doj, doj-(numtodsinterval(60,'day')) "k1" from db3;
+select doj, doj-(numtodsinterval(60,'day')) "k1" from db3
+            *
+ERROR at line 1:
+ORA-00904: "DOJ": invalid identifier
+
+
+SQL> select doi, doi-(numtodsinterval(60,'day')) "k1" from db3;
+
+DOI       k1
+--------- ---------
+01-APR-96 01-FEB-96
+12-APR-96 12-FEB-96
+21-APR-96 21-FEB-96
+25-APR-96 25-FEB-96
+30-APR-96 01-MAR-96
+
+SQL> select doi, doi+(numtodsinterval(30,'day')) "k1" from db3;
+
+DOI       k1
+--------- ---------
+01-APR-96 01-MAY-96
+12-APR-96 12-MAY-96
+21-APR-96 21-MAY-96
+25-APR-96 25-MAY-96
+30-APR-96 30-MAY-96
+
+SQL> select sum(total)
+  2  select sum(total)
+  3
+SQL> select * from db3;
+
+  FLEET_ID     TICKET DOI       DOT       TIME_TRA BOARD_PLACE  ORIGIN
+---------- ---------- --------- --------- -------- ------------ ----------
+DESTINATIO      ADULT   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         1          1 01-APR-96 10-MAY-96 15:00:00 Parrys       Madras
+Madhurai            1          1         60        101
+
+         2          2 12-APR-96 05-MAY-96 09:00:00 KKanagar     Madhurai
+Madras              2          1         60        102
+
+         3          3 21-APR-96 15-MAY-96 21:00:00 Cubon_park   Banglore
+Madras              4          2        400        101
+
+
+  FLEET_ID     TICKET DOI       DOT       TIME_TRA BOARD_PLACE  ORIGIN
+---------- ---------- --------- --------- -------- ------------ ----------
+DESTINATIO      ADULT   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         4          4 25-APR-96 25-MAY-96 10:00:00 Charminar    Hyderbad
+Madras             10          0        500        103
+
+         5          5 30-APR-96 22-MAY-96 15:00:00 Parrys       Madras
+Cochin              2          2        141        103
+
+
+SQL> select sum(total_fare) as bet from db3;
+
+       BET
+----------
+      1161
+
+SQL> select sum(children) as bet from db3;
+
+       BET
+----------
+         6
+
+SQL> select min(route) as bet from db3;
+
+       BET
+----------
+       101
+
+SQL>

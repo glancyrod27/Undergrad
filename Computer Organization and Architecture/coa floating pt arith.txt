@@ -1,0 +1,193 @@
+import java.util.*;
+
+class Floating
+
+{
+
+  int sign;
+
+  int a[]=new int[32];
+
+  int b[]=new int[8];
+
+  int man[]=new int[23];
+
+  int j,k,l;
+
+   void binary(int p)
+
+   {
+
+`	 int o=7;
+
+	 while(p!=0)
+
+	  {
+
+		int rem=p%2;
+
+		b[o]=rem;
+	
+		p=p/2;
+
+		o--;
+
+	  }
+
+   }
+
+      void floating(double n)
+
+      {
+
+         int i;
+
+         int in=(int)n;
+
+         int y=0;
+
+         int in1=in;
+
+         int count=0;
+
+         int count1=0;
+
+         int no=(int)n;
+
+          while(no!=0)
+
+           {
+
+             no=no/2;
+
+             count1++;
+
+            }
+
+         int count2=count1;
+
+         count1--;
+
+           while(in!=0)
+
+		{
+
+			int rem=in%2;
+
+			a[count1]=rem;
+
+			in=in/2;
+
+			count1--;
+
+			l++;
+
+		}
+
+	 for(j=0;j<a.length;j++)
+
+		{
+
+			count++;
+
+			if(a[j]==1)
+
+			break;
+
+ 
+		}
+
+
+		int E=127+count2-count;
+
+		binary(E);
+
+		double mantissa;
+
+		mantissa=n-in1;
+
+		for( i=(count2-count);i<22;i++)
+
+		{
+
+			mantissa*=2;
+
+			man[i]=(int)mantissa;
+
+			mantissa=mantissa-man[i];
+
+		}
+
+		for(i=0; i<(count2-count) ; i++)
+		{
+
+			man[i]=a[i+1];
+
+			System.out.print(sign);
+
+			System.out.print(" ");
+
+			for(int i1=0;i1<b.length;i1++)
+
+			{	
+				System.out.print(b[i1]);
+
+				System.out.print(" ");
+
+				for(int i2=0;i2<man.length;i2++)
+
+				{
+
+					System.out.print(man[i2]);
+
+
+				}
+
+			}
+		}
+	}
+ }
+
+class FloatingPoint
+
+{
+
+	public static void main(String args[])
+	{
+
+		Floating f=new Floating();
+
+		System.out.println("Enter a decimal no");
+
+		Scanner sc=new Scanner(System.in);
+
+		double h=sc.nextDouble();
+
+		if(h<0)
+
+		f.sign=1;
+
+		f.floating(h);
+
+	}
+
+}
+
+
+/*
+
+ OUTPUT :
+
+C:\Documents and Settings\Pratik\Desktop>javac FloatingPoint.java
+
+C:\Documents and Settings\Pratik\Desktop>java FloatingPoint
+
+Enter a decimal no
+
+12.75
+
+0 10000010 10011000000000000000000
+
+C:\Documents and Settings\Pratik\Desktop>
+
+*/

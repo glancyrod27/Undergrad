@@ -1,0 +1,267 @@
+EXPT : 02
+Eric M  Fernandes
+SE CMPN  Roll No. 34  Batch : 02
+
+Q.1)List all Data from Deposit
+SQL> select * from Deposit ;
+ACTNO CNAME              BNAME                  AMOUNT ADATE
+----- ------------------ ------------------ ---------- ---------
+100   ANIL               VRCE                     1000 01-MAR-95
+101   SUNIL              AJNI                     5000 04-JAN-96
+102   MEHUL              KAROLBAGH                3500 17-NOV-95
+104   MADHURI            CHANDNI                  1200 17-DEC-95
+105   PRAMOD             M.G.ROAD                 3000 27-MAR-96
+106   SANDIP             ANDHERI                  2000 31-MAR-96
+107   SHIVANI            VIRAR                    1000 05-SEP-95
+108   KRANTI             NEHRU PLACE              5000 02-JUL-95
+109   NAREN              POWAI                    7000 10-AUG-95
+
+9 rows selected.
+
+Q.2)List all Data from Borrow
+SQL> select * from Borrow ;
+
+LOANN CNAME              BNAME                  AMOUNT
+----- ------------------ ------------------ ----------
+201   ANIL               VRCE                     1000
+206   MEHUL              AJNI                     5000
+311   SUNIL              DHARAMPETH               3000
+321   MADHURI            ANDHERI                  2000
+375   PRAMOD             VIRAR                    8000
+481   KRANTI             NEHRU PLACE              3000
+
+6 rows selected.
+
+Q.3)List all Data from Customer
+SQL> select * from Customer ;
+
+CNAME               CITY
+------------------- ------------------
+ANIL                CALCUTTA
+SUNIL               DELHI
+MUHUL               BARODA
+MANDAR              PATNA
+MADHURI             NAGPUR
+PRAMOD              NAGPUR
+SANDIP              SURAT
+SHIVANI             BOMBAY
+KRANTI              BOMBAY
+NAREN               BOMBAY
+
+10 rows selected.
+
+Q.4)List all Data from Branch
+SQL> select * from Branch ;
+
+BNAME              CITY
+------------------ ------------------
+VRCE               NAGPUR
+AJNI               NAGPUR
+KAROLBAGH          DELHI
+CHANDNI            DELHI
+DHARAMPETH         NAGPUR
+M.G.ROAD           BANGLORE
+ANDHERI            BOMBAY
+VIRAR              BOMBAY
+NEHRU PLACE        DELHI
+POWAI              BOMBAY
+
+10 rows selected.
+
+Q.5) Give Account number and Amount of Depositors 
+
+SQL> select Actno , Amount from Deposit ;
+
+ACTNO     AMOUNT
+----- ----------
+100         1000
+101         5000
+102         3500
+104         1200
+105         3000
+106         2000
+107         1000
+108         5000
+109         7000
+
+9 rows selected.
+
+Q.6) Give Customer name and Amount of Depositors 
+
+SQL> select Cname , Actno from Deposit ;
+
+CNAME              ACTNO
+------------------ -----
+ANIL               100
+SUNIL              101
+MEHUL              102
+MADHURI            104
+PRAMOD             105
+SANDIP             106
+SHIVANI            107
+KRANTI             108
+NAREN              109
+
+9 rows selected.
+
+Q.7) Give names of Customers
+
+SQL> select Cname from Customer ;
+
+CNAME
+-------------------
+ANIL
+SUNIL
+MUHUL
+MANDAR
+MADHURI
+PRAMOD
+SANDIP
+SHIVANI
+KRANTI
+NAREN
+
+10 rows selected.
+
+Q.8) Give names of Branches
+
+SQL> select Bname from Branch ;
+
+BNAME
+------------------
+VRCE
+AJNI
+KAROLBAGH
+CHANDNI
+DHARAMPETH
+M.G.ROAD
+ANDHERI
+VIRAR
+NEHRU PLACE
+POWAI
+
+10 rows selected.
+
+Q.9) Give names of Bowwowers
+
+SQL> select Cname from Borrow ;
+
+CNAME
+------------------
+ANIL
+MEHUL
+SUNIL
+MADHURI
+PRAMOD
+KRANTI
+
+6 rows selected.
+
+Q.10) Give names of Customers living in City NAGPUR
+
+SQL> select Cname from Customer where city='NAGPUR' ;
+
+CNAME
+-------------------
+MADHURI
+PRAMOD
+
+Q.11) Give names of Depositors having Amount greater than 4000
+
+SQL> select Cname from Deposit where Amount>4000 ;
+
+CNAME
+------------------
+SUNIL
+KRANTI
+NAREN
+
+Q.12) Give Account Date of Customer Anil
+
+SQL> select Adate from Deposit where Cname='ANIL';
+
+ADATE
+---------
+01-MAR-95
+
+Q.13) Give names of all Branches located in city Bombay
+
+SQL> select Bname from Branch where city='BOMBAY' ;
+
+BNAME
+------------------
+ANDHERI
+VIRAR
+POWAI
+
+Q.14) Give name of Borrower having Loan no 206.
+
+SQL> select Cname from Borrow where Loanno=206 ;
+
+CNAME
+------------------
+MEHUL
+
+Q.15) Give names of Depositors having account at VRCE.
+
+SQL> select Cname from Deposit where Bname='VRCE' ;
+
+CNAME
+------------------
+ANIL
+
+Q.16) Give names of all branches located in city DELHI
+
+SQL> select Bname from Branch where city='DELHI' ;
+
+BNAME
+------------------
+KAROLBAGH
+CHANDNI
+NEHRU PLACE
+
+Q.17) Give names of Customers who opened account after date 1-12-95
+
+SQL> select Cname from Deposit where Adate>'01-DEC-95' ;
+
+CNAME
+------------------
+SUNIL
+MADHURI
+PRAMOD
+SANDIP
+
+Q.18) Give account number and deposit amount of Customers having account opened between dates 1-12-95 and 1-6-95
+
+SQL> select Actno , Amount from Deposit where Adate<'01-DEC-95' AND Adate>'01-JU
+N-95' ;
+
+ACTNO     AMOUNT
+----- ----------
+102         3500
+107         1000
+108         5000
+109         7000
+
+Q.19) Give name of city where branch KAROLBAGH is located
+
+SQL> select city from Branch where Bname='KAROLBAGH' ;
+
+CITY
+------------------
+DELHI
+
+Q.20) Give Details of Customer Anil
+
+SQL> select * from Deposit,Branch,Customer,Borrow where Customer.Cname='ANIL' AN
+D Deposit.Cname='ANIL' AND Borrow.Cname='ANIL' AND Deposit.Bname=Branch.Bname ;
+
+ACTNO CNAME              BNAME                  AMOUNT ADATE
+----- ------------------ ------------------ ---------- ---------
+BNAME              CITY               CNAME               CITY
+------------------ ------------------ ------------------- ------------------
+LOANN CNAME              BNAME                  AMOUNT
+----- ------------------ ------------------ ----------
+100   ANIL               VRCE                     1000 01-MAR-95
+VRCE               NAGPUR             ANIL                CALCUTTA
+201   ANIL               VRCE                     1000

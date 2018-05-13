@@ -1,0 +1,258 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Mon Mar 5 13:27:23 2012
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: scott@oracle
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.1.0.6.0 - Production
+
+SQL> select * from simba;
+
+  FLEET_ID DAY         ROUTE_ID   CAT_CODE
+---------- --------- ---------- ----------
+         1 10-APR-96        101          1
+         2 10-APR-96        101          1
+         3 10-APR-96        101          1
+         4 10-APR-96        102          2
+         5 10-APR-96        102          3
+         6 10-APR-96        103          4
+
+6 rows selected.
+
+SQL> select * from welroyd;
+select * from welroyd
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from welroy1;
+
+no rows selected
+
+SQL> select * from welroy1;
+
+no rows selected
+
+SQL> select * from ticket_info;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         1          1 01-APR-96 10-MAY-96 15:00:00   parrys     madras
+madhurai            1          1         60        101
+
+         2          2 12-APR-96 15-MAY-96 09:00:00   KKNagar    madhurai
+madras              2          1         60        102
+
+         3          3 21-APR-96 15-MAY-96 21:00:00   Cubbonpark Bangalore
+madras              4          2        400        101
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         4          4 25-APR-96 25-MAY-96 10:00:00   Char minar hyderabad
+madras             10          0        500        103
+
+         5          5 30-APR-96 22-MAY-96 15:00:00   Parrys     madras
+cochin              2          2        141        103
+
+
+SQL> SELECT ORIGIN
+  2  from ticket_info
+  3  where origin like 'm%';
+
+ORIGIN
+----------
+madras
+madhurai
+madras
+
+SQL> select origin
+  2  from ticket_info
+  3  where origin like '______';
+
+ORIGIN
+----------
+madras
+madras
+
+SQL> select origin
+  2  from ticket_info
+  3  where origin like '%adr%';
+
+ORIGIN
+----------
+madras
+madras
+
+SQL> select * from ticket_info
+  2  order by board_place;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         4          4 25-APR-96 25-MAY-96 10:00:00   Char minar hyderabad
+madras             10          0        500        103
+
+         3          3 21-APR-96 15-MAY-96 21:00:00   Cubbonpark Bangalore
+madras              4          2        400        101
+
+         2          2 12-APR-96 15-MAY-96 09:00:00   KKNagar    madhurai
+madras              2          1         60        102
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         5          5 30-APR-96 22-MAY-96 15:00:00   Parrys     madras
+cochin              2          2        141        103
+
+         1          1 01-APR-96 10-MAY-96 15:00:00   parrys     madras
+madhurai            1          1         60        101
+
+
+SQL> select * from ticket_info
+  2  order by board_place asc, origin desc;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         4          4 25-APR-96 25-MAY-96 10:00:00   Char minar hyderabad
+madras             10          0        500        103
+
+         3          3 21-APR-96 15-MAY-96 21:00:00   Cubbonpark Bangalore
+madras              4          2        400        101
+
+         2          2 12-APR-96 15-MAY-96 09:00:00   KKNagar    madhurai
+madras              2          1         60        102
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         5          5 30-APR-96 22-MAY-96 15:00:00   Parrys     madras
+cochin              2          2        141        103
+
+         1          1 01-APR-96 10-MAY-96 15:00:00   parrys     madras
+madhurai            1          1         60        101
+
+
+SQL> select origin, sum(adults) from ticket_info
+  2  group by origin;
+
+ORIGIN     SUM(ADULTS)
+---------- -----------
+madras               3
+hyderabad           10
+Bangalore            4
+madhurai             2
+
+SQL> select destination, sum(adults) from ticket_info
+  2  group by destination
+  3  having sum(adults)>2;
+
+DESTINATIO SUM(ADULTS)
+---------- -----------
+madras              16
+
+SQL> select * from ticket_info;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         1          1 01-APR-96 10-MAY-96 15:00:00              madras
+madhurai            1          1         60        101
+
+         2          2 12-APR-96 15-MAY-96 09:00:00   KKNagar    madhurai
+madras              2          1         60        102
+
+         3          3 21-APR-96 15-MAY-96 21:00:00   Cubbonpark Bangalore
+madras              4          2        400        101
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRAVE BOARD_PLAC ORIGIN
+---------- ---------- --------- --------- ---------- ---------- ----------
+DESTINATIO     ADULTS   CHILDREN TOTAL_FARE      ROUTE
+---------- ---------- ---------- ---------- ----------
+         4          4 25-APR-96 25-MAY-96 10:00:00   Char minar hyderabad
+madras             10          0        500        103
+
+         5          5 30-APR-96 22-MAY-96 15:00:00   Parrys     madras
+cochin              2          2        141        103
+
+
+SQL> select ticket_no from ticket_info
+  2  where board_place is null;
+
+ TICKET_NO
+----------
+         1
+
+SQL> select ticket_no from ticket_info
+  2  where board_place is not null;
+
+ TICKET_NO
+----------
+         2
+         3
+         4
+         5
+
+SQL> select ticket_no from ticket_info
+  2  where board_place is null and origin is not null;
+
+ TICKET_NO
+----------
+         1
+
+SQL> select ticket_no from ticket_info
+  2  where board_place is null or origin is not null;
+
+ TICKET_NO
+----------
+         1
+         2
+         3
+         4
+         5
+SQL> select ticket_no from ticket_info
+  2  where ticket_no<ANY(1,2);
+
+ TICKET_NO
+----------
+         1
+SQL> select ticket_no from ticket_info
+  2  where ticket_no>ALL(1,3);
+
+ TICKET_NO
+----------
+         4
+         5
+
+SQL> select ticket_no from ticket_info
+  2  where ticket_no<>All(1,2);
+
+ TICKET_NO
+----------
+         3
+         4
+         5
+SQL> select ticket_no from ticket_info
+  2  where ticket_no<ALL(3,4);
+
+ TICKET_NO
+----------
+         1
+         2

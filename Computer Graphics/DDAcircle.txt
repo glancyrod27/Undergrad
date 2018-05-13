@@ -1,0 +1,49 @@
+import java.awt.*;
+import java.applet.*;
+import java.util.*;
+/*<applet code= "Dcircle.class" height=400 width=700>
+</applet>*/
+public class Dcircle extends Applet
+	{
+	Scanner sc=new Scanner(System.in);
+	double xc,yc,r,x2,y2,x1,y1;
+	double d,e;
+int n;
+	
+	public void init()
+	{
+	System.out.println("Enter the center");
+	xc=sc.nextInt();
+	yc=sc.nextInt();
+	System.out.println("Enter the radius");
+	r=sc.nextInt();
+	
+	}
+	public void paint(Graphics g)
+	{
+	x1=0;
+	y1=r;
+	n=0;
+	do
+{
+	n++;
+}
+	while(Math.pow(2,(n-1))>r||Math.pow(2,(n))<r);
+	 
+	e=Math.pow(2,(-n));
+	
+	do
+	{
+	
+	x2=x1+e*y1;
+	y2=(y1-(e*x2));
+	g.drawLine((int)(xc+x2),(int)(yc+y2),(int)(xc+x2),(int)(yc+y2));
+	x1=x2;
+	y1=y2;
+	}
+	while((y1-r)<+e||(0-x1)>e);
+	
+
+	
+}
+}

@@ -1,0 +1,312 @@
+import java.io.*;
+
+class FIFO
+{	
+	public static void main(String args[])throws IOException
+	{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		Func d=new Func();
+		d.readdata();
+		System.out.println("Enter option  \n1. FIFO  \n2.LRU");
+		int op=Integer.parseInt(br.readLine());
+		switch(op)
+		{
+			case 1:
+				d.fifo();
+				break;
+			case 2:
+				d.lru();
+				break;
+			default:
+				System.out.println("Wrong Option");
+		}
+	}
+}
+class Func
+{
+	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	int page[];
+	int hit=0, miss=0;
+	int frame[];
+	int length, index=0;
+	boolean hitflag=false;
+	int fsize, pageno;
+	int serial=0;
+	int indexarr[];
+	int least, leastindex;
+
+	void readdata()throws IOException
+	{
+		System.out.println("Enter frame size");
+		fsize=Integer.parseInt(br.readLine());
+		frame=new int[fsize];
+		System.out.println("Enter no of pages");
+		pageno=Integer.parseInt(br.readLine());
+		page=new int[pageno];
+		System.out.println("Enter Page Sequence");
+		for(int i=0; i<pageno; i++)
+		page[i]=Integer.parseInt(br.readLine());		
+	}
+
+	void fifo()
+	{
+		length=pageno;
+		System.out.println("FIFO: \n");
+		for(int i=0; i<3; i++)
+		frame[i]=-1;
+
+		int pg=0;
+		while(pg<length)
+		{
+			for(int i=0; i<fsize; i++)
+			{
+				if(frame[i]==page[pg])
+				{
+					hit++;
+					System.out.print("HIT");
+					System.out.println("\n");
+					hitflag=true;
+					break;
+				}
+				else
+				hitflag=false;
+			}
+
+			if(hitflag==false)
+			{
+				frame[index%fsize]=page[pg];
+				index++;
+				miss++;
+				display();
+			}
+
+			pg++;
+		}
+
+		System.out.println("Hit:"+hit);
+		System.out.println("Miss:"+miss);
+	}
+
+	void lru()
+	{
+		indexarr=new int[fsize];	
+		length=pageno;
+		System.out.println("LRU: \n");
+		for(int i=0; i<fsize; i++)
+		frame[i]=-1;
+
+		for(int i=0; i<fsize; i++)
+		indexarr[i]=serial++;		
+
+		int pg=0;
+		while(pg<length)
+		{
+			for(int i=0; i<fsize; i++)
+			{
+				if(frame[i]==page[pg])
+				{
+					hit++;
+					System.out.print("HIT");
+					System.out.println("\n");
+					hitflag=true;
+					indexarr[i]=serial++;
+					break;
+				}
+				else
+				hitflag=false;
+			}
+
+			if(hitflag==false)
+			{
+				least=0;
+				leastindex=indexarr[0];
+				for(int i=1; i<fsize; i++)
+				{
+					if(indexarr[i]<leastindex)
+					{	least=i;
+						leastindex=indexarr[i];
+					}
+				}
+				frame[least]=page[pg];
+				indexarr[least]=serial++;
+				miss++;
+				display();
+			}
+
+			pg++;
+		}
+
+		System.out.println("Hit:"+hit);
+		System.out.println("Miss:"+miss);
+	}
+
+	void display()
+	{
+		for(int i=0; i<fsize; i++)
+		{
+			if(frame[i]==-1)
+			System.out.print("   ");
+			else
+			System.out.print(frame[i]+"  ");
+		}
+		System.out.println("\n");
+	}
+}
+
+/*  Output:
+
+C:\Roshan\Java\OS>java FIFO
+Enter frame size
+3
+Enter no of pages
+20
+Enter Page Sequence
+7
+0
+1
+2
+0
+3
+0
+4
+2
+3
+0
+3
+2
+1
+2
+0
+1
+7
+0
+1
+Enter option
+1. FIFO
+2.LRU
+1
+FIFO:
+
+7
+
+7  0
+
+7  0  1
+
+2  0  1
+
+HIT
+
+2  3  1
+
+2  3  0
+
+4  3  0
+
+4  2  0
+
+4  2  3
+
+0  2  3
+
+HIT
+
+HIT
+
+0  1  3
+
+0  1  2
+
+HIT
+
+HIT
+
+7  1  2
+
+7  0  2
+
+7  0  1
+
+
+Page Fault:15
+Hit:5
+Miss:12
+
+C:\Roshan\Java\OS>java FIFO
+Enter frame size
+3
+Enter no of pages
+20
+Enter Page Sequence
+7
+0
+1
+2
+0
+3
+0
+4
+2
+3
+0
+3
+2
+1
+2
+0
+1
+7
+0
+1
+Enter option
+1. FIFO
+2.LRU
+2
+FIFO:
+
+7
+
+7  0
+
+7  0  1
+
+7  2  1
+
+7  0  1
+
+7  3  1
+
+0  3  1
+
+4  3  1
+
+2  3  1
+
+HIT
+
+0  3  1
+
+HIT
+
+2  3  1
+
+HIT
+
+HIT
+
+2  0  1
+
+HIT
+
+2  7  1
+
+0  7  1
+
+HIT
+
+
+Page Fault:14
+Hit:6
+Miss:11
+
+*/

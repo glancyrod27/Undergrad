@@ -1,0 +1,99 @@
+import java.util.*;
+class stack
+{
+   int top;
+   int arr[]=new int[40];
+   stack()
+    {
+       top=-1;
+     }
+   void insert(int x)
+    {
+        if(top==39)
+          System.out.println(" Stack full");
+        else 
+          {
+            top++;
+            arr[top]=x;
+         }
+}
+int delete()
+{
+   int y;
+   if(top==-1)
+         {
+             System.out.print(" Empty stack");
+             return 0;
+          }
+      else
+         {
+          y=arr[top];
+          top--;
+          return y;
+         }
+}
+boolean empty()
+{
+     if(top==-1)
+         {
+              return true;
+          }
+     else
+           return false;
+}  
+void dfs(int a[][], int start, int n)
+{
+  int i,j,h;
+  int visited[]=new int[40];
+  for(i=1;i<=n;i++)
+    visited[i]=0;
+ h=start;
+visited[h]=1;
+System.out.println(" DFS Sequence ");
+while(true)
+{ 
+  System.out.print("  "+h);
+  for(j=1;j<=n;j++)
+    {
+         if((a[h][j]==1)&&(visited[j]==0))
+           {
+             
+                insert(j);
+                visited[j]=1;
+            }
+  }
+if(empty())
+  return ;
+else
+ h=delete();
+}
+}
+}
+class dfs
+{
+   public static void main(String args[])
+     {
+         
+          int a[][]=new int[40][40];
+          int n,start,i,j;
+        Scanner sc=new Scanner(System.in);
+         System.out.print(" Enter total number of vertices ");
+          n=sc.nextInt();
+         System.out.println(" Enter adjacency matrix ");
+         for(i=1;i<=n;i++)
+         {
+          for(j=1;j<=n;j++)
+          {
+            a[i][j]=sc.nextInt();
+            System.out.print("    ");
+          }
+           System.out.println("\n");
+         }
+         System.out.println(" Enter start vertex ");
+         start=sc.nextInt();
+        stack Q=new stack();
+        Q.dfs(a,start,n);
+  }
+}
+        
+        

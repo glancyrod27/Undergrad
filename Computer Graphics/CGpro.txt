@@ -1,0 +1,7 @@
+import java.util.*;
+import java.applet.Applet;
+import java.awt.*;
+/*<applet code="CGpro.class" height=500 width=500>
+</applet>
+*/
+public class  CGpro extends Applet

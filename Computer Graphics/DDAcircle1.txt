@@ -1,0 +1,58 @@
+import java.util.*;
+import java.applet.Applet;
+import java.awt.*;
+/*<applet code="DDAcircle1.class" height=600 width=600>
+</applet>
+*/
+public class DDAcircle1 extends Applet
+    {
+	Scanner sc=new Scanner(System.in);
+	double xc,yc,r,x2,y2,x1,y1;
+	double d,e;
+	int n;
+	public void init()
+	{
+		System.out.println("Enter the center");
+		xc=sc.nextInt();
+		yc=sc.nextInt();
+		System.out.println("Enter the radius");
+		r=sc.nextInt();
+	}
+	public void draw(int r,Graphics g)
+	{	
+		x1=0;
+		y1=r;
+		n=0;
+		do
+		{
+			n++;
+		}
+		while(Math.pow(2,(n-1))>r||Math.pow(2,(n))<r);
+	 	e=Math.pow(2,(-n));
+	
+		do
+		{
+			x2=x1+e*y1;
+			y2=(y1-(e*x2));
+			g.drawLine((int)-x2+200,(int)y2+200,(int)x2+200,(int)-y2+200);
+			
+			x1=x2;
+			y1=y2;	
+		}
+		while((y1-r)<+e||(0-x1)>e);
+	}
+	public void paint(Graphics g)
+	{
+		int i,j;
+		for( i=y;i<=(y+20);)	
+		{
+			
+			g.setColor(Color.green);
+			draw(i,g);
+			i=i+10;
+			
+			
+		}
+
+	}
+  }

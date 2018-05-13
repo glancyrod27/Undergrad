@@ -1,0 +1,84 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package os72;
+
+/**
+ *
+ * @author Administrator
+ */
+
+
+
+
+
+
+import java.io.*;
+class FIFOpgre
+{
+  public static void main(String args[])throws IOException
+    {
+        int seq[],frame[];
+        int m,n;
+        int miss=0;
+        int hit=0;
+       
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("enter no of pages");
+        m=Integer.parseInt(br.readLine());
+
+        seq=new int[m];
+        System.out.println("enter frame size");
+        n=Integer.parseInt(br.readLine());
+        frame=new int[n];
+        System.out.println("enter no in pages");
+        for(int i=0;i<m;i++)
+        {
+            seq[i]=Integer.parseInt(br.readLine());
+
+        }
+        fifo(n,seq);
+  }
+
+
+  static  void fifo(int n,int seq[]){
+        int frame[]=new int [n];
+        int hits=0,miss=0;
+        int timeCounter[]=new int[n];
+        for(int i=0;i<n;i++){
+            frame[i]=-1;
+            timeCounter[i]=-1;
+        }
+        for(int i=0;i<seq.length;i++){
+            int least=0;
+            boolean isPresent=false;
+            for(int point=0;point<frame.length;point++){
+            if(frame[point]==seq[i]){
+                isPresent=true;hits++;
+                //timeCounter[point]=i;
+                //cacheArray[point]=i;
+            }
+            if(timeCounter[point]<timeCounter[least])
+                least=point;
+            }
+            if(!isPresent){
+                miss++;
+               frame[least]=seq[i];
+                timeCounter[least]=i;
+            }
+            for(int j=0;j<frame.length;j++){
+                System.out.print(frame[j]+"\t");}
+            System.out.print("\n");
+        }
+        System.out.println("Hits:"+hits+"\tMisses"+miss);
+    }
+
+        }
+
+
+       
+
+
+

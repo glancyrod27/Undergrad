@@ -1,0 +1,419 @@
+
+SQL> Create table Railway2(Fleet_id number(2),Ticket_no number(2),DOI date,DOT date,Time_Travel varchar2(8),Board_place varchar(8),Orig
+in varchar2(8),Destination varchar2(8),Adults number(2),Child number(2),Total_fair number(3),Route number(3));
+
+Table created.
+
+SQL> desc Railway2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FLEET_ID                                           NUMBER(2)
+ TICKET_NO                                          NUMBER(2)
+ DOI                                                DATE
+ DOT                                                DATE
+ TIME_TRAVEL                                        VARCHAR2(8)
+ BOARD_PLACE                                        VARCHAR2(8)
+ ORIGIN                                             VARCHAR2(8)
+ DESTINATION                                        VARCHAR2(8)
+ ADULTS                                             NUMBER(2)
+ CHILD                                              NUMBER(2)
+ TOTAL_FAIR                                         NUMBER(3)
+ ROUTE                                              NUMBER(3)
+
+SQL> Insert into Railway2(Fleet_id,Ticket_no,DOI,DOT,Time_Travel,Board_place,Origin,Destination,Adults,Child,Total_fair,Route)values(01
+,01,'03-apr-94','12-apr-94','13:00:00','bandra','delhi','mumbai',23,34,200,101);
+
+1 row created.
+
+SQL> Insert into Railway2(Fleet_id,Ticket_no,DOI,DOT,Time_Travel,Board_place,Origin,Destination,Adults,Child,Total_fair,Route)values(02
+,02,'05-apr-94','17-apr-94','16:00:00','parrys','delhi','surat',26,13,500,102);
+
+1 row created.
+
+SQL> Insert into Railway2(Fleet_id,Ticket_no,DOI,DOT,Time_Travel,Board_place,Origin,Destination,Adults,Child,Total_fair,Route)values(03
+,03,'16-apr-94','22-apr-94','16:00:00','andheri','vadodra','chennai',26,15,570,103);
+
+1 row created.
+
+SQL> Insert into Railway2(Fleet_id,Ticket_no,DOI,DOT,Time_Travel,Board_place,Origin,Destination,Adults,Child,Total_fair,Route)values(04
+,04,'16-may-94','22-may-94','14:00:00','andheri','sikkkim','lucknow',26,18,540,104);
+
+1 row created.
+
+SQL> Insert into Railway2(Fleet_id,Ticket_no,DOI,DOT,Time_Travel,Board_place,Origin,Destination,Adults,Child,Total_fair,Route)values(05
+,05,'06-may-94','13-may-94','15:00:00','andheri','delhi','lucknow',66,18,740,105);
+
+1 row created.
+
+SQL> select * from Railway2;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         1          1 03-APR-94 12-APR-94 13:00:00 bandra   delhi    mumbai
+        23         34        200        101
+
+         2          2 05-APR-94 17-APR-94 16:00:00 parrys   delhi    surat
+        26         13        500        102
+
+         3          3 16-APR-94 22-APR-94 16:00:00 andheri  vadodra  chennai
+        26         15        570        103
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         4          4 16-MAY-94 22-MAY-94 14:00:00 andheri  sikkkim  lucknow
+        26         18        540        104
+
+         5          5 06-MAY-94 13-MAY-94 15:00:00 andheri  delhi    lucknow
+        66         18        740        105
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select origin from Railway2 where substr((origin),1,1)='m';
+
+no rows selected
+
+SQL> select origin from Railway2 where substr((destination),1,1)='m';
+
+ORIGIN
+--------
+delhi
+
+SQL> select destination from Railway2 where substr((destination),1,1)='m';
+
+DESTINAT
+--------
+mumbai
+
+SQL> select destination from Railway2 where substr((destination),1,3)='luc';
+
+DESTINAT
+--------
+lucknow
+lucknow
+
+SQL> select destination from Railway2 where Destination like'______';
+
+DESTINAT
+--------
+mumbai
+
+SQL> select Board_place from Railway2 order by Board_place;
+
+BOARD_PL
+--------
+andheri
+andheri
+andheri
+bandra
+parrys
+
+SQL> select * from Railway2 order by origin,board_place desc;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         2          2 05-APR-94 17-APR-94 16:00:00 parrys   delhi    surat
+        26         13        500        102
+
+         1          1 03-APR-94 12-APR-94 13:00:00 bandra   delhi    mumbai
+        23         34        200        101
+
+         5          5 06-MAY-94 13-MAY-94 15:00:00 andheri  delhi    lucknow
+        66         18        740        105
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         4          4 16-MAY-94 22-MAY-94 14:00:00 andheri  sikkkim  lucknow
+        26         18        540        104
+
+         3          3 16-APR-94 22-APR-94 16:00:00 andheri  vadodra  chennai
+        26         15        570        103
+
+
+SQL>
+SQL> select * from Railway2 order by origin,destination desc;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         2          2 05-APR-94 17-APR-94 16:00:00 parrys   delhi    surat
+        26         13        500        102
+
+         1          1 03-APR-94 12-APR-94 13:00:00 bandra   delhi    mumbai
+        23         34        200        101
+
+         5          5 06-MAY-94 13-MAY-94 15:00:00 andheri  delhi    lucknow
+        66         18        740        105
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         4          4 16-MAY-94 22-MAY-94 14:00:00 andheri  sikkkim  lucknow
+        26         18        540        104
+
+         3          3 16-APR-94 22-APR-94 16:00:00 andheri  vadodra  chennai
+        26         15        570        103
+
+
+SQL> select origin,sum(ticket_no)from Railway2 group by origin;
+
+ORIGIN   SUM(TICKET_NO)
+-------- --------------
+vadodra               3
+delhi                 8
+sikkkim               4
+
+SQL> select ticket_no from Railway2 where Board_place='parrys';
+
+ TICKET_NO
+----------
+         2
+
+SQL> select ticket_no from Railway2 where Board_place='null';
+
+no rows selected
+
+SQL> select ticket_no from Railway2 where origin='delhi';
+
+ TICKET_NO
+----------
+         1
+         2
+         5
+
+SQL> update Railway2
+  2  set Board_place=null
+  3  where Destination='surat';
+
+1 row updated.
+
+SQL> select ticket_no from Railway2 where origin='delhi',board_place='null';
+select ticket_no from Railway2 where origin='delhi',board_place='null'
+                                                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select ticket_no from Railway2 where origin='delhi' and board_place='null';
+
+no rows selected
+
+SQL> select* ticket_no from Railway2 where origin='delhi' and board_place='null';
+select* ticket_no from Railway2 where origin='delhi' and board_place='null'
+        *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select *  from Railway2 where origin='delhi' and board_place='null';
+
+no rows selected
+
+SQL> select *  from Railway2;
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         1          1 03-APR-94 12-APR-94 13:00:00 bandra   delhi    mumbai
+        23         34        200        101
+
+         2          2 05-APR-94 17-APR-94 16:00:00          delhi    surat
+        26         13        500        102
+
+         3          3 16-APR-94 22-APR-94 16:00:00 andheri  vadodra  chennai
+        26         15        570        103
+
+
+  FLEET_ID  TICKET_NO DOI       DOT       TIME_TRA BOARD_PL ORIGIN   DESTINAT
+---------- ---------- --------- --------- -------- -------- -------- --------
+    ADULTS      CHILD TOTAL_FAIR      ROUTE
+---------- ---------- ---------- ----------
+         4          4 16-MAY-94 22-MAY-94 14:00:00 andheri  sikkkim  lucknow
+        26         18        540        104
+
+         5          5 06-MAY-94 13-MAY-94 15:00:00 andheri  delhi    lucknow
+        66         18        740        105
+
+
+SQL> select ticket_no from Railway2 where origin='delhi' and board_place='null';
+
+no rows selected
+
+SQL> select ticket_no from Railway2 where  board_place='null';
+
+no rows selected
+
+SQL> select ticket_no from Railway2 where  board_place is null;
+
+ TICKET_NO
+----------
+         2
+
+SQL> select ticket_no from Railway2 where origin='delhi' and board_place is null';
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> select ticket_no from Railway2 where origin='delhi' and board_place is null;
+
+ TICKET_NO
+----------
+         2
+
+SQL> select ticket_no from Railway2 where origin='delhi' or board_place is null;
+
+ TICKET_NO
+----------
+         1
+         2
+         5
+
+SQL> select ticket_no from Railway2 where ticket_no=any(1,2);
+
+ TICKET_NO
+----------
+         1
+         2
+
+SQL> select ticket_no from Railway2 where ticket_no!=all(1,2);
+
+ TICKET_NO
+----------
+         3
+         4
+         5
+
+SQL> select ticket_no from Railway2 where ticket_no!=all(2,3);
+
+ TICKET_NO
+----------
+         1
+         4
+         5
+
+SQL> select ticket_no from Railway2 where ticket_no<(1,3);
+select ticket_no from Railway2 where ticket_no<(1,3)
+                                              *
+ERROR at line 1:
+ORA-01797: this operator must be followed by ANY or ALL
+
+
+SQL> select ticket_no from Railway2 where ticket_no< all(1,3);
+
+no rows selected
+
+SQL> select ticket_no from Railway2 where ticket_no< any(1,3);
+
+ TICKET_NO
+----------
+         1
+         2
+
+SQL> select ticket_no from Railway2 where ticket_no< all(3,4);
+
+ TICKET_NO
+----------
+         1
+         2
+
+SQL> select ticket_no from Railway2 where ticket_no> any(1,3);
+
+ TICKET_NO
+----------
+         2
+         3
+         4
+         5
+SQL> Create Student1(name varchar(6),marks number(3));
+Create Student1(name varchar(6),marks number(3))
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> Create table Student1(name varchar(6),marks number(3));
+
+Table created.
+
+SQL> desc Student1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ---------------------------
+ NAME                                               VARCHAR2(6)
+ MARKS                                              NUMBER(3)
+
+SQL> Insert into Student1(name,marks)values('shelli',45);
+
+1 row created.
+
+SQL> Insert into Student1(name,marks)values('rose',47);
+
+1 row created.
+
+SQL> Insert into Student1(name,marks)values('dolly',46);
+
+1 row created.
+
+SQL> select * from Student1;
+
+NAME        MARKS
+------ ----------
+shelli         45
+rose           47
+dolly          46
+
+SQL> create table Department(name1 varchar(6),stream varchar(4));
+
+Table created.
+
+SQL> insert into Department(name1,stream)values('shelli','comp');
+
+1 row created.
+
+SQL> insert into Department(name1,stream)values('rose','comp');
+
+1 row created.
+
+SQL> insert into Department(name1,stream)values('dolly','it');
+
+1 row created.
+
+SQL> select * from Department;
+
+NAME1  STRE
+------ ----
+shelli comp
+rose   comp
+dolly  it
+
+SQL> select * from Student1,Department
+  2  where Student.name=Department.name1;
+where Student.name=Department.name1
+      *
+ERROR at line 2:
+ORA-00904: "STUDENT"."NAME": invalid identifier
+
+
+SQL> select * from Student1,Department
+  2  where student1.name=Department.name1;
+
+NAME        MARKS NAME1  STRE
+------ ---------- ------ ----
+shelli         45 shelli comp
+rose           47 rose   comp
+dolly          46 dolly  it

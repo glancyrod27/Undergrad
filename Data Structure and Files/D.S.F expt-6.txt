@@ -1,0 +1,86 @@
+import java.io.*;
+ 
+class Is
+{
+	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	int large,small,n,i,x,j=0,num;
+ 	int a[];
+	Is()throws IOException
+	 {
+	  	System.out.println("Enter no of elements");
+		n= Integer.parseInt(br.readLine());
+		a=new int[n+1];
+		System.out.println("Enter the elements");
+		for(int i=0;i<n;i++)
+		a[i]=Integer.parseInt(br.readLine());
+		small=a[0];
+		large=small;
+		x=a[0];
+		System.out.println("Maximum:"+this.max(x,large));
+		x=a[0];
+		j=0;
+		System.out.println("Minimum :"+this.min(x,small));
+	 }
+	int max(int x,int large)
+	{
+		if(j==n)
+		return large;
+		if(x>large)
+		{
+			j++;
+			large=x;
+			x=a[j];
+			return max(x,large);
+		}
+		else
+		{
+			j++;
+			x=a[j];
+			return max(x,large);
+		}
+	}
+	int min(int x,int small)
+	{
+		if(j==n)
+		return small;
+		if(x<small)
+		{
+			j++;
+			small=x;
+			x=a[j];
+			return min(x,small);
+		}
+		else 
+		{
+			j++;
+			x=a[j];
+			return min(x,small);
+		}
+	}
+}
+ 
+ 
+class demo6
+{
+	public static void main(String args[])throws IOException
+	{
+ 		Is obj=new Is();
+	}
+}
+/*
+output
+L:\>javac demo6.java
+ 
+L:\>java demo6
+Enter no of elements
+5
+Enter the elements
+23
+22
+1
+56
+4
+Maximum:56
+Minimum :1
+ 
+*/
